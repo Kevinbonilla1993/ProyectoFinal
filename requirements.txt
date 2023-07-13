@@ -1,0 +1,6 @@
+streamlit
+gspread
+datetime
+pandas
+pydeck
+Pillow
