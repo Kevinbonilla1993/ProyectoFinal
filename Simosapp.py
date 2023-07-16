@@ -35,7 +35,7 @@ else:
     level=':white_circle: Desconocido'
     delta='ML'
     rgba='[255,255,0,160]'
-    recm='bajo.jpeg'
+    recm='bajo.jpg'
 
 if country=='usa':
     flag=':flag-us:'
