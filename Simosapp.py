@@ -11,7 +11,7 @@ result=st.experimental_get_query_params() #Get params of url
 country=result['val'][0]
 latitude=result['val'][1]
 # Convertir latitude a float
-latitude = float(latitude)
+latitude = int(latitude)
 longitude=result['val'][2]
 depth=result['val'][3]
 mag=result['val'][4]
