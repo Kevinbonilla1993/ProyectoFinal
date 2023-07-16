@@ -16,7 +16,6 @@ depth = result['val'][3]
 mag = result['val'][4]
 sistype = result['val'][5]
 
-# Crear diseño
-if country == 'japon':
-    st.image('bajo.jpg', caption='Imagen de Japón')
+
+st.image('bajo.jpg', caption='Imagen de Japón')
 
