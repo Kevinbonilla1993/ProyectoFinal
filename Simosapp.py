@@ -83,7 +83,7 @@ if choice=='Home':
     #Recommendations
     st.markdown('***')
     st.markdown('## Recomendaciones')
-    image = Image.open('infografia.png')
+    image = Image.open('recomendaciones.jpg.png')
     image_b=Image.open(recm)
     st.image(image_b)
     st.image(image)
