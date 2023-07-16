@@ -11,10 +11,15 @@ result=st.experimental_get_query_params() #Get params of url
 country=result['val'][0]
 st.write(f"## Recomendaciones: {country}")
 latitude=result['val'][1]
+st.write(f"## Recomendaciones: {latitude}")
 longitude=result['val'][2]
+st.write(f"## Recomendaciones: {longitude}")
 depth=result['val'][3]
+st.write(f"## Recomendaciones: {depth}")
 mag=result['val'][4]
+st.write(f"## Recomendaciones: {mag}")
 sistype=result['val'][5]
+st.write(f"## Recomendaciones: {sistype}")
 
 # Creating layout
 if sistype=='leve':
