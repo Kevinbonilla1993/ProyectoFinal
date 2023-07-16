@@ -18,31 +18,5 @@ sistype = result['val'][5]
 
 # Crear diseño
 if country == 'japon':
-    level = 'Leve :large_green_circle:'
-    delta = 'ML'
-    rgba = '[0,204,0,160]'
-    recm = 'bajo.jpg'
-elif sistype == 'medio':
-    level = 'Medio :large_yellow_circle:'
-    delta = 'ML'
-    rgba = '[255,255,0,160]'
-    recm = 'medio.jpeg'
-elif sistype == 'alto':
-    level = 'Alto :red_circle:'
-    delta = '-ML'
-    rgba = '[255,0,0,160]'
-    recm = 'alto.jpeg'
-else:
-    level = ':white_circle: Desconocido'
-    delta = 'ML'
-    rgba = '[255,255,0,160]'
-    recm = 'bajo.jpeg'
+    st.image('bajo.jpg', caption='Imagen de Japón')
 
-if country=='usa':
-    flag=':flag-us:'
-elif country=='japon':
-    flag=':flag-jp:'
-elif country=='chile':
-    flag=':flag-cl:'
-else:
-    flag=':flag-us:'
