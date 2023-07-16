@@ -9,12 +9,7 @@ st.set_page_config(page_title="Alertas Sismicas",
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
 
-country = result['val'][0]
-latitude = result['val'][1]
-longitude=result['val'][2]
-depth = result['val'][3]
-mag = result['val'][4]
-sistype = result['val'][5]
+
 
 
 st.image('bajo.jpg', caption='Imagen de Japón')
