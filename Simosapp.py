@@ -10,11 +10,11 @@ st.set_page_config(page_title="Alertas Sismicas",
 result = st.experimental_get_query_params()
 country = result.get('val', [])[0]
 country = result['val'][0]
-latitude = result['val'][1]
-longitude = result['val'][2]
-depth = result['val'][3]
-mag = result['val'][4]
-sistype = result['val'][5]
+latitude = result.get('val', [])[1]
+longitude = result.get('val', [])[2]
+depth = result.get('val', [])[3]
+mag = result.get('val', [])[4]
+sistype = result.get('val', [])[5]
 
 # Crear diseño
 if sistype == 'leve':
