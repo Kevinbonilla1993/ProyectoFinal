@@ -37,3 +37,12 @@ else:
     delta = 'ML'
     rgba = '[255,255,0,160]'
     recm = 'bajo.jpeg'
+
+if country=='usa':
+    flag=':flag-us:'
+elif country=='japon':
+    flag=':flag-jp:'
+elif country=='chile':
+    flag=':flag-cl:'
+else:
+    flag=':flag-us:'
