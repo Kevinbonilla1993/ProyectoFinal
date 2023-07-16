@@ -42,6 +42,9 @@ if country=='usa':
 elif country=='japon':
     flag=':flag-jp:'
 elif country=='chile':
+     flag=':flag-cl:'
+else:
+    flag=':flag-us:'
 
 menu = ['Home', 'Feedback']
 choice = st.sidebar.selectbox("Menu", menu)
