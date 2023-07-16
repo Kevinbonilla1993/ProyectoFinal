@@ -17,7 +17,7 @@ mag = result['val'][4]
 sistype = result['val'][5]
 
 # Crear diseño
-if sistype == 'leve':
+if country == 'japon':
     level = 'Leve :large_green_circle:'
     delta = 'ML'
     rgba = '[0,204,0,160]'
