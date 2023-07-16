@@ -12,6 +12,7 @@ country=result['val'][0]
 st.write(f"## Recomendaciones: {country}")
 latitude=result['val'][1]
 st.write(f"## Recomendaciones: {type(latitude)}")
+latitude_float = float(latitude)
 longitude=result['val'][2]
 st.write(f"## Recomendaciones: {type(longitude)}")
 depth=result['val'][3]
