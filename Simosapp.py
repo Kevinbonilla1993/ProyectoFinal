@@ -11,9 +11,9 @@ result=st.experimental_get_query_params() #Get params of url
 country=result['val'][0]
 st.write(f"## Recomendaciones: {country}")
 latitude=result['val'][1]
-st.write(f"## Recomendaciones: {latitude}")
+st.write(f"## Recomendaciones: {type(latitude)}")
 longitude=result['val'][2]
-st.write(f"## Recomendaciones: {longitude}")
+st.write(f"## Recomendaciones: {type(longitude)}")
 depth=result['val'][3]
 st.write(f"## Recomendaciones: {depth}")
 mag=result['val'][4]
