@@ -8,8 +8,7 @@ st.set_page_config(page_title="Alertas Sismicas",
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
-print(result)
-
+country = result.get('val', [])[0]
 country = result['val'][0]
 latitude = result['val'][1]
 longitude = result['val'][2]
