@@ -21,7 +21,7 @@ if country == 'japon':
     level = 'Leve :large_green_circle:'
     delta = 'ML'
     rgba = '[0,204,0,160]'
-    recm = 'bajo.jpeg'
+    recm = 'bajo.jpg'
 elif sistype == 'medio':
     level = 'Medio :large_yellow_circle:'
     delta = 'ML'
