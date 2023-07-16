@@ -52,8 +52,7 @@ menu = ['Home', 'Feedback']
 choice = st.sidebar.selectbox("Menu", menu)
 
 if choice=='Home':
-    st.markdown('# {0} Intensidad: {1}'.format(flag, level)) #Level
-    st.markdown('***')
+
     d={'lat':[float(latitude)], 'lon':[float(longitude)]}
     df=pd.DataFrame(d)
     col1,col2,col3=st.columns(3)
