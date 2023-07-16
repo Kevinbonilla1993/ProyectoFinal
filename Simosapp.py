@@ -9,9 +9,9 @@ st.set_page_config(page_title="Alertas Sismicas",
 result=st.experimental_get_query_params() #Get params of url
 
 country=result['val'][0]
+print(country)
+st.markdown('## Recomendaciones')
 latitude=result['val'][1]
-# Convertir latitude a float
-latitude = int(latitude)
 longitude=result['val'][2]
 depth=result['val'][3]
 mag=result['val'][4]
