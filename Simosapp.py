@@ -47,6 +47,21 @@ elif country == 'chile':
 else:
     flag = ':flag-us:'
 
+d = {'lat': [], 'lon': []}
+
+if latitude and longitude:
+    try:
+        d['lat'].append(float(latitude))
+        d['lon'].append(float(longitude))
+    except ValueError:
+        # Manejar el caso en el que no se pueda convertir a tipo float
+        # Puedes imprimir un mensaje de error o tomar alguna otra acción apropiada
+        print("Error: No se pudieron convertir los valores a tipo float.")
+else:
+    # Manejar el caso en el que latitude o longitude sean None o estén vacíos
+    # Puedes imprimir un mensaje de advertencia o tomar alguna otra acción apropiada
+    print("Advertencia: Latitude o longitude no están definidos o son valores vacíos.")
+
 # Mostrar la página
 st.markdown(f'# {flag} Intensidad: {level}') # Nivel
 st.markdown('***')
