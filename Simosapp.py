@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 import pandas as pd
 import datetime
+import pydeck as pdk
 
 # Design
 st.set_page_config(page_title="Alertas Sismicas",
