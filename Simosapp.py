@@ -18,21 +18,32 @@ mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
 
-# Configuración de la página
-st.set_page_config(page_title="App Quake", layout="wide")
+import streamlit as st
+import folium
+import requests
 
-# Título de la app
-st.title("App Quake")
+def get_map(country, latitude, longitude, depth, mag):
+    """Gets a map of the earthquake location."""
+    map = folium.Map(location=[latitude, longitude], zoom_start=6)
+    folium.CircleMarker([latitude, longitude], radius=mag*10, color='red', fill=True, fill_color='red').add_to(map)
+    return map
 
-# Menú desplegable
-menu_options = ["Inicio", "Feedback"]
-choice = st.sidebar.selectbox("Menu", menu_options)
+def get_scale(mag):
+    """Gets an interactive drawing of the Richter scale."""
+    scale = requests.get('https://raw.githubusercontent.com/streamlit/streamlit/master/examples/widgets/richter_scale.html')
+    return scale
 
-# Mapa centrado en la ubicación del sismo
-m = folium.Map(location=[latitude, longitude], zoom_start=8)
+def main():
+    """Main function."""
+    st.title('App Quake')
+    map = get_map(country, latitude, longitude, depth, mag)
+    st.write(map)
+    st.write('Date:', date)
+    st.write('Depth:', depth)
+    st.write('Magnitude:', mag, '(Richter scale)')
+    st.write(get_scale(mag))
+    st.write('Location:', latitude, ',', longitude)
 
-# Marcador en la ubicación del sismo
-marker = folium.Marker([latitude, longitude], popup=sistype)
-marker.add_to(m)
-
+if __name__ == '__main__':
+    main()
 
