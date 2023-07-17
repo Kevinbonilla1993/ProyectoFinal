@@ -18,32 +18,51 @@ mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
 
-# Set the title of the app
-st.title("Earthquake App")
+# Configurar el estilo de la página
+st.set_page_config(
+    page_title="App Quake",
+    page_icon="🌍",
+    layout="wide"
+)
 
-# Create a map centered on the earthquake location
-map = folium.Map(location=[latitude, longitude], zoom_start=6)
+# Título de la app
+st.title("App Quake")
 
-# Add a marker to the map
-folium.Marker([latitude, longitude], popup=f"Earthquake in {country}").add_to(map)
+# Crear un mapa centrado en las coordenadas del sismo
+mapa = folium.Map(location=[latitude, longitude], zoom_start=8)
 
-# Display the map
-st.map(map)
+# Marcador del sismo en el mapa
+folium.Marker(
+    location=[latitude, longitude],
+    popup=f"Sismo: {country}",
+    icon=folium.Icon(color="orange")
+).add_to(mapa)
 
-# Add more information below the map
-st.write("Date:", date)
-st.write("Depth:", depth)
-st.write("Magnitude:", mag)
+# Mostrar el mapa en Streamlit
+st.markdown("## Mapa del sismo")
+folium_static(mapa)
 
-# Create an interactive Richter scale
-richter_scale = st.slider("Richter Scale", 1.0, 10.0, mag)
+# Menú desplegable
+menu_opciones = ["Home", "Interacciones"]
+opcion = st.sidebar.selectbox("Menú", menu_opciones)
+st.sidebar.markdown("## Opciones")
+st.sidebar.info(f"Seleccionaste: {opcion}")
 
-# Display the location in longitude and latitude
-st.write("Longitude:", longitude)
-st.write("Latitude:", latitude)
+# Información adicional del sismo
+st.markdown("## Información del sismo")
+st.write(f"- Fecha: {fecha}")
+st.write(f"- Profundidad: {depth} km")
+st.write(f"- Magnitud: {mag}")
 
-# Display the location in strings above the map
-st.write(f"Earthquake in {country}", style={"color": "orange"})
+# Dibujo interactivo de la escala de Richter
+st.markdown("## Escala de Richter")
+# Aquí puedes agregar el código necesario para mostrar la escala de Richter
 
-# Add a dropdown menu with home and interactions
-st.sidebar.dropdown("Menu", ["Home", "Interactions"])
+# Ubicación en coordenadas
+st.markdown("## Ubicación en coordenadas")
+st.write(f"- Latitud: {latitude}")
+st.write(f"- Longitud: {longitude}")
+
+# Ubicación en formato de texto
+st.markdown("## Ubicación en texto")
+st.info(f"Ubicación: {country}")
