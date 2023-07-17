@@ -12,32 +12,40 @@ mag = float(result['val'][4])
 sistype = result['val'][5]
 date = result['val'][6]
 
-# Crear un mapa con Folium
-m = folium.Map(location=[latitude, longitude], zoom_start=6)
+import streamlit as st
+import folium
 
-# Agregar un marcador al mapa con información del sismo
-popup_text = f"Pais: {country}<br>Latitud: {latitude}<br>Longitud: {longitude}<br>Profundidad: {depth}<br>Magnitud: {mag}<br>Tipo: {sistype}<br>Fecha: {date}"
-folium.Marker(location=[latitude, longitude], popup=popup_text, icon=folium.Icon(color='red', icon='info-sign')).add_to(m)
+# Crear una función para generar el mapa con Folium
+def generate_map(latitude, longitude, country, depth, mag, sistype, date):
+    # Crear un mapa con Folium
+    m = folium.Map(location=[latitude, longitude], zoom_start=8)
 
-# Agregar un control de capas para alternar estilos de mapa
-folium.TileLayer('OpenStreetMap').add_to(m)
-folium.TileLayer('Stamen Terrain').add_to(m)
-folium.TileLayer('Stamen Toner').add_to(m)
-folium.LayerControl().add_to(m)
+    # Agregar un marcador al mapa con información del sismo
+    popup_text = f"Pais: {country}<br>Latitud: {latitude}<br>Longitud: {longitude}<br>Profundidad: {depth}<br>Magnitud: {mag}<br>Tipo: {sistype}<br>Fecha: {date}"
+    folium.Marker(location=[latitude, longitude], popup=popup_text).add_to(m)
 
-# Agregar algunos marcadores adicionales para mostrar lugares de interés
-places = {
-    "Ciudad importante 1": [latitude + 0.1, longitude + 0.1],
-    "Ciudad importante 2": [latitude - 0.1, longitude - 0.1],
-    "Centro turístico": [latitude, longitude + 0.2],
-    "Área de interés": [latitude - 0.15, longitude + 0.15],
-}
+    # Convertir el mapa de Folium a HTML
+    map_html = m._repr_html_()
+    return map_html
 
-for place, coords in places.items():
-    folium.Marker(location=coords, popup=place, icon=folium.Icon(color='blue', icon='star')).add_to(m)
+# Página principal de la aplicación
+def main():
+    st.title("QuakeAlert: Informando sobre Sismos")
+    st.write("Ingrese los datos del sismo:")
+    country = st.text_input("Pais")
+    latitude = st.number_input("Latitud", value=0.0)
+    longitude = st.number_input("Longitud", value=0.0)
+    depth = st.text_input("Profundidad")
+    mag = st.number_input("Magnitud", value=0.0)
+    sistype = st.text_input("Tipo")
+    date = st.text_input("Fecha")
 
-# Convertir el mapa de Folium a HTML
-map_html = m._repr_html_()
+    if st.button("Mostrar Mapa"):
+        map_html = generate_map(latitude, longitude, country, depth, mag, sistype, date)
+        st.markdown(f"<div>{map_html}</div>", unsafe_allow_html=True)
+
+if __name__ == "__main__":
+    main()
 
 
 
