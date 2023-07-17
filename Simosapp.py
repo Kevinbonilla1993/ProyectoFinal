@@ -2,6 +2,10 @@ import streamlit as st
 import folium
 
 # Datos del sismo
+
+# Obtener parámetros de la URL
+result = st.experimental_get_query_params()
+
 country = result['val'][0]
 latitude = result['val'][1]
 longitude = result['val'][2]
