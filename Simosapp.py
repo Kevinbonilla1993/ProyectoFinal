@@ -18,32 +18,32 @@ mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
 
-import streamlit as st
-import folium
-import requests
+# Set the title of the app
+st.title("Earthquake App")
 
-def get_map(country, latitude, longitude, depth, mag):
-    """Gets a map of the earthquake location."""
-    map = folium.Map(location=[latitude, longitude], zoom_start=6)
-    folium.CircleMarker([latitude, longitude], radius=mag*10, color='red', fill=True, fill_color='red').add_to(map)
-    return map
+# Create a map centered on the earthquake location
+map = folium.Map(location=[latitude, longitude], zoom_start=6)
 
-def get_scale(mag):
-    """Gets an interactive drawing of the Richter scale."""
-    scale = requests.get('https://raw.githubusercontent.com/streamlit/streamlit/master/examples/widgets/richter_scale.html')
-    return scale
+# Add a marker to the map
+folium.Marker([latitude, longitude], popup=f"Earthquake in {country}").add_to(map)
 
-def main():
-    """Main function."""
-    st.title('App Quake')
-    map = get_map(country, latitude, longitude, depth, mag)
-    st.write(map)
-    st.write('Date:', date)
-    st.write('Depth:', depth)
-    st.write('Magnitude:', mag, '(Richter scale)')
-    st.write(get_scale(mag))
-    st.write('Location:', latitude, ',', longitude)
+# Display the map
+st.map(map)
 
-if __name__ == '__main__':
-    main()
+# Add more information below the map
+st.write("Date:", date)
+st.write("Depth:", depth)
+st.write("Magnitude:", mag)
 
+# Create an interactive Richter scale
+richter_scale = st.slider("Richter Scale", 1.0, 10.0, mag)
+
+# Display the location in longitude and latitude
+st.write("Longitude:", longitude)
+st.write("Latitude:", latitude)
+
+# Display the location in strings above the map
+st.write(f"Earthquake in {country}", style={"color": "orange"})
+
+# Add a dropdown menu with home and interactions
+st.sidebar.dropdown("Menu", ["Home", "Interactions"])
