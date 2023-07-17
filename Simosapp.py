@@ -1,4 +1,5 @@
 import streamlit as st
+import folium
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
@@ -30,11 +31,15 @@ st.title("QuakeAlert: Informando sobre Sismos")
 # Línea separadora
 st.write("---")
 
-# Create a map centered at the earthquake location
-st.subheader("Locacion")
-earthquake_map = folium.Map(location=[latitude, longitude], zoom_start=10)
-folium.Marker(location=[latitude, longitude], popup="Locacion").add_to(earthquake_map)
-folium_static(earthquake_map)
+# Crear un mapa con Folium
+m = folium.Map(location=[latitude, longitude], zoom_start=8)
+
+# Agregar un marcador al mapa con información del sismo
+popup_text = f"Pais: {country}<br>Latitud: {latitude}<br>Longitud: {longitude}<br>Profundidad: {depth}<br>Magnitud: {mag}<br>Tipo: {sistype}<br>Fecha: {date}"
+folium.Marker(location=[latitude, longitude], popup=popup_text).add_to(m)
+
+# Convertir el mapa de Folium a HTML
+map_html = m._repr_html_()
 
 # Mostrar los datos
 st.write(f"Pais: {country}")
