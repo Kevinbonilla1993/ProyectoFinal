@@ -10,7 +10,7 @@ longitude = result['val'][2]
 depth = result['val'][3]
 mag = result['val'][4]
 sistype = result['val'][5]
-fecha = result['val'][6]
+date = result['val'][6]
 
 # Create the app
 app = st.empty()
