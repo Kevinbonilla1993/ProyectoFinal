@@ -19,7 +19,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: #964b00; /* Código de color café */
+        background-color: #FF6E33; /* Código de color café */
         padding: 30px; /* Añade un espacio alrededor de la barra */
     }
     </style>
