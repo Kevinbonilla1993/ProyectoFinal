@@ -6,4 +6,4 @@ pydeck
 Pillow
 folium
 streamlit-folium
-
+tkinter
