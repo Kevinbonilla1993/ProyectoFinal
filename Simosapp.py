@@ -1,5 +1,6 @@
 import streamlit as st
 import folium
+import tkinter as tk
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
@@ -12,40 +13,27 @@ mag = float(result['val'][4])
 sistype = result['val'][5]
 date = result['val'][6]
 
-import streamlit as st
-import folium
+# Crear la ventana de la aplicación
+app = tk.Tk()
+app.title("Quake Alert")
+app.geometry("400x300")
+app.configure(bg="orange")
 
-# Crear una función para generar el mapa con Folium
-def generate_map(latitude, longitude, country, depth, mag, sistype, date):
-    # Crear un mapa con Folium
-    m = folium.Map(location=[latitude, longitude], zoom_start=8)
+# Crear el título de la aplicación
+title_label = tk.Label(app, text="Quake Alert", font=("Helvetica", 20, "bold"), bg="orange")
+title_label.pack(pady=10)
 
-    # Agregar un marcador al mapa con información del sismo
-    popup_text = f"Pais: {country}<br>Latitud: {latitude}<br>Longitud: {longitude}<br>Profundidad: {depth}<br>Magnitud: {mag}<br>Tipo: {sistype}<br>Fecha: {date}"
-    folium.Marker(location=[latitude, longitude], popup=popup_text).add_to(m)
+# Crear el separador
+separator = tk.Frame(app, height=2, bd=1, relief="sunken", bg="black")
+separator.pack(fill="x", padx=10)
 
-    # Convertir el mapa de Folium a HTML
-    map_html = m._repr_html_()
-    return map_html
+# Crear el mapa o la información del sismo
+earthquake_info_label = tk.Label(app, text=f"Latest Earthquake in {country}\nMagnitude: {mag}\nDepth: {depth}\nType: {sistype}\nDate: {date}", font=("Helvetica", 12), bg="orange")
+earthquake_info_label.pack(pady=10)
 
-# Página principal de la aplicación
-def main():
-    st.title("QuakeAlert: Informando sobre Sismos")
-    st.write("Ingrese los datos del sismo:")
-    country = st.text_input("Pais")
-    latitude = st.number_input("Latitud", value=0.0)
-    longitude = st.number_input("Longitud", value=0.0)
-    depth = st.text_input("Profundidad")
-    mag = st.number_input("Magnitud", value=0.0)
-    sistype = st.text_input("Tipo")
-    date = st.text_input("Fecha")
+# Puedes agregar aquí el código para mostrar un mapa con la ubicación del sismo utilizando librerías adicionales.
 
-    if st.button("Mostrar Mapa"):
-        map_html = generate_map(latitude, longitude, country, depth, mag, sistype, date)
-        st.markdown(f"<div>{map_html}</div>", unsafe_allow_html=True)
-
-if __name__ == "__main__":
-    main()
+app.mainloop()
 
 
 
