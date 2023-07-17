@@ -12,43 +12,65 @@ mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
 
-# Configuración de la página
-st.set_page_config(page_title="App Quake")
+# Create the app
+app = st.empty()
 
-# Título y menú desplegable
-st.title("App Quake")
-st.sidebar.title("Interacciones")
-menu_options = ['Home', 'Interacciones']
-selected_option = st.sidebar.selectbox("Seleccione una opción", menu_options)
+# Add the title
+app.title('Earthquake App')
 
-# Create a map centered on the earthquake location
-map = folium.Map(location=[latitude, longitude], zoom_start=8)
+# Add the country
+app.write('Country:', country)
 
-# Add the earthquake location to the map
-folium.Marker([latitude, longitude], popup=f"Earthquake Location").add_to(map)
+# Add the latitude and longitude
+app.write('Latitude:', latitude)
+app.write('Longitude:', length)
 
-# Add more information below the map
-st.subheader("Earthquake Details")
-st.write("Date:", fecha)
-st.write("Depth:", depth)
-st.write("Magnitude:", mag)
+# Add the depth
+app.write('Depth:', depth)
 
-# Slider de la escala de Richter
-scale = st.slider("Richter Scale", 1.0, 9.9, value=float(mag))
+# Add the magnitude
+mag_level = random.randint(1, 9)
+if mag_level <= 4:
+    color = 'green'
+elif mag_level <= 6:
+    color = 'orange'
+else:
+    color = 'red'
+app.write('Magnitude:', mag, f' ({color})')
 
-# Add the location in longitude and latitude
-st.write("Longitude:", longitude)
-st.write("Latitude:", latitude)
+# Add the type
+app.write('Type:', typosis)
 
-# Add the location in strings above the map
-st.write(f"Earthquake Location: {country} ({latitude}, {longitude})")
+# Add the date
+app.write('Date:', date)
 
-# Add an image below the dropdown menu
-st.image("https://i.imgur.com/15j871F.png")
+# Add the Richter scale images
+st.image('ritcher.jpg', color=color)
+st.image('ritcher.jpg', color=color)
 
-# Display the map
-st.map(map)
+# Add the recommendations
+st.write('Recommendations:')
+st.write('* Stay away from buildings or structures that could collapse.')
+st.write('* Stay indoors if you are in a building.')
+st.write('* If you are outdoors, find a low-lying area and lie down.')
 
+# Add a map of the epicenter
+app.map(latitude, length)
+
+# Add a news feed
+st.write('Latest Earthquakes:')
+for earthquake in earthquakes:
+    mag_level = random.randint(1, 9)
+    if mag_level <= 4:
+        color = 'green'
+    elif mag_level <= 6:
+        color = 'orange'
+    else:
+        color = 'red'
+    st.write(earthquake['country'], f' ({mag}, {color})')
+
+# Show the app
+app.show()
 
 
 
