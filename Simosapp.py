@@ -14,60 +14,68 @@ mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
 
-# Configuración de la página
-st.set_page_config(page_title='App Quake', layout='wide')
 
-# Título de la aplicación
-st.title('App Quake')
+# Configuración de la página
+st.set_page_config(page_title="App Quake", layout="wide")
+
+# Título de la app
+st.title("App Quake")
 
 # Menú desplegable
-menu_options = ['Home', 'Interacciones']
-selected_menu = st.sidebar.selectbox('Menú', menu_options)
+menu_options = ["Home", "Interacciones"]
+menu_choice = st.sidebar.selectbox("Menú", menu_options)
 
-if selected_menu == 'Home':
-    # Mapa centrado en el sismo
-    quake_map = folium.Map(location=[latitude, longitude], zoom_start=8)
-    folium.Marker([latitude, longitude], popup=country).add_to(quake_map)
-    folium.TileLayer('cartodbpositron').add_to(quake_map)
-    folium.TileLayer('stamentonerlabels').add_to(quake_map)
-    quake_map = quake_map._repr_html_()
+# Mapa centrado en la ubicación del sismo
+st.header("Mapa")
+map_center = [latitude, longitude]
+map_zoom = 10
+map_height = 600
+m = folium.Map(location=map_center, zoom_start=map_zoom, height=map_height)
+folium.Marker(location=map_center, popup="Ubicación del sismo").add_to(m)
+folium_static = st.markdown(folium.Map(location=map_center, zoom_start=map_zoom)._repr_html_(), unsafe_allow_html=True)
 
-    # Información del sismo
-    st.subheader('Información del sismo')
-    st.markdown(f"**Fecha:** {fecha}")
-    st.markdown(f"**Profundidad:** {depth} km")
-    st.markdown(f"**Magnitud:** {mag}")
-    st.markdown(f"**Tipo de sismo:** {sistype}")
+# Información adicional del sismo
+st.header("Información adicional")
+st.subheader("Fecha")
+st.write(fecha)
+st.subheader("Profundidad")
+st.write(depth)
+st.subheader("Magnitud")
+st.write(mag)
 
-    # Escala de Richter interactiva
-    st.subheader('Escala de Richter')
-    st.image('richter_scale.png', use_column_width=True)
+# Representación interactiva de la escala de Richter
+st.subheader("Escala de Richter")
+richter_scale = """
+            <style>
+                .richter-scale {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .richter-scale .bar {
+                    width: 100%;
+                    height: 30px;
+                    background-color: #CCCCCC;
+                }
+                .richter-scale .indicator {
+                    width: 0%;
+                    height: 30px;
+                    background-color: #FFA500;
+                }
+            </style>
+            <div class="richter-scale">
+                <div class="bar"></div>
+                <div class="indicator" style="width:{magnitude_percentage}%;"></div>
+            </div>
+        """
+magnitude_percentage = (mag / 9) * 100  # Escala de Richter normalizada de 0 a 100
+st.markdown(richter_scale.format(magnitude_percentage=magnitude_percentage), unsafe_allow_html=True)
 
-else:
-    # Interacciones
-    st.subheader('Interacciones')
-    # Agrega aquí el código para las interacciones que desees mostrar
+# Ubicación en longitud y latitud
+st.subheader("Ubicación (Longitud, Latitud)")
+st.write(f"{longitude}, {latitude}")
 
-# Estilos de la aplicación
-st.markdown(
-    """
-    <style>
-    .css-1aumxhk {
-        color: orange;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Renderiza el mapa y otros elementos en la página
-st.markdown(f"""
-    <div style="background-color: orange; padding: 10px; border-radius: 10px; margin-top: 20px">
-    <h3 style="color: white; text-align: center">{country}</h3>
-    <p style="color: white; text-align: center">Latitud: {latitude}, Longitud: {longitude}</p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-st.markdown(quake_map, unsafe_allow_html=True)
+# Ubicación en texto
+st.subheader("Ubicación (Texto)")
+st.markdown(f"<span style='color: orange;'>{country}</span>", unsafe_allow_html=True)
 
