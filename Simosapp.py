@@ -1,6 +1,5 @@
 import streamlit as st
 import folium
-import tkinter as tk
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
