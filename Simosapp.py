@@ -1,5 +1,6 @@
 import streamlit as st
 import folium
+from streamlit_folium import folium_static
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
