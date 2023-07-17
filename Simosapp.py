@@ -26,7 +26,7 @@ st.sidebar.selectbox("Menu", ["Home", "Interactions"])
 
 # Add more information below the map
 st.subheader("Earthquake Details")
-st.write("Date:", date)
+st.write("Date:", fecha)
 st.write("Depth:", depth)
 st.write("Magnitude:", mag)
 
