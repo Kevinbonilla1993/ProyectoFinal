@@ -14,18 +14,11 @@ sistype = result['val'][5]
 date = result['val'][6]
 
 # Establecer el estilo de la barra superior
+# Establecer el estilo de la barra superior
 st.markdown(
     """
     <style>
-    .reportview-container .main .block-container {
-        max-width: 100%;
-        padding-top: 1rem;
-        padding-right: 1rem;
-        padding-left: 1rem;
-        padding-bottom: 1rem;
-    }
-    .reportview-container .main {
-        color: #fff;
+    .stApp {
         background-color: #ff8c00;
     }
     </style>
@@ -35,13 +28,13 @@ st.markdown(
 
 # Título de la aplicación
 st.title("¡QuakeAlert: El poder en tus manos!")
-st.write(f"Country: {country}")
-st.write(f"Latitude: {latitude}")
-st.write(f"Length: {longitude}")
-st.write(f"Depth: {depth}")
-st.write(f"Magnitude: {mag}")
-st.write(f"Typosis: {sistype}")
-st.write(f"Date: {date}")
+st.write(f"Pais: {country}")
+st.write(f"Latitud: {latitude}")
+st.write(f"Longitud: {longitude}")
+st.write(f"Profundidad: {depth}")
+st.write(f"Magnitud: {mag}")
+st.write(f"Tipo: {sistype}")
+st.write(f"Fecha: {date}")
 
 # Display the images
 st.subheader("Escala de richter")
@@ -49,8 +42,8 @@ image1 = st.image("ritcher.jpg")
 
 # Create a map centered at the earthquake location
 st.subheader("Locacion")
-earthquake_map = folium.Map(location=[latitude, longitude], zoom_start=10)
-folium.Marker(location=[latitude, longitude], popup="Locacion").add_to(earthquake_map)
+earthquake_map = folium.Map(location=[latitud, longitud], zoom_start=10)
+folium.Marker(location=[latitud, longitud], popup="Locacion").add_to(earthquake_map)
 folium_static(earthquake_map)
 
 # Display recommendations
