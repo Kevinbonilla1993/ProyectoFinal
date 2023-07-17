@@ -23,7 +23,7 @@ st.write(f"Date: {date}")
 
 # Display the images
 st.subheader("Escala de richter")
-image1 = st.file_uploader(ritcher.jpg)
+image1 = st.image(ritcher.jpg)
 
 # Create a map centered at the earthquake location
 st.subheader("Locacion")
@@ -31,14 +31,9 @@ earthquake_map = folium.Map(location=[latitude, longitude], zoom_start=10)
 folium.Marker(location=[latitude, longitude], popup="Locacion").add_to(earthquake_map)
 folium_static(earthquake_map)
 
-# Notification button
-if st.button("Notify Population"):
-    # Code for notifying the population goes here
-    st.write("Notification sent to the population!")
-
 # Display recommendations
 st.subheader("Recommendations")
 recommendation = st.text_area("Enter your recommendations here.")
 
-image2 = st.file_uploader("recomendaciones.jpg")
+image2 = st.image("recomendaciones.jpg")
 
