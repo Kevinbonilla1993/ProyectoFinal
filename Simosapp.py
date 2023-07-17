@@ -12,65 +12,33 @@ mag = result['val'][4]
 sistype = result['val'][5]
 date = result['val'][6]
 
-# Create the app
-app = st.empty()
+st.title("Earthquake Alert App")
+st.write(f"Country: {country}")
+st.write(f"Latitude: {latitude}")
+st.write(f"Length: {length}")
+st.write(f"Depth: {depth}")
+st.write(f"Magnitude: {mag}")
+st.write(f"Typosis: {typosis}")
+st.write(f"Date: {date}")
 
-# Add the title
-app.title('Earthquake App')
+# Display the images
+st.subheader("Escalade Richter Images")
+image1 = st.file_uploader("ritcher.jpg")
 
-# Add the country
-app.write('Country:', country)
+# Create a map centered at the earthquake location
+st.subheader("Earthquake Location")
+earthquake_map = folium.Map(location=[latitude, longitude], zoom_start=10)
+folium.Marker(location=[latitude, longitude], popup="Earthquake Location").add_to(earthquake_map)
+folium_static(earthquake_map)
 
-# Add the latitude and longitude
-app.write('Latitude:', latitude)
-app.write('Longitude:', longitude)
+# Notification button
+if st.button("Notify Population"):
+    # Code for notifying the population goes here
+    st.write("Notification sent to the population!")
 
-# Add the depth
-app.write('Depth:', depth)
+# Display recommendations
+st.subheader("Recommendations")
+recommendation = st.text_area("Enter your recommendations here.")
 
-# Add the magnitude
-mag_level = random.randint(1, 9)
-if mag_level <= 4:
-    color = 'green'
-elif mag_level <= 6:
-    color = 'orange'
-else:
-    color = 'red'
-app.write('Magnitude:', mag, f' ({color})')
-
-# Add the type
-app.write('Type:', sistype)
-
-# Add the date
-app.write('Date:', date)
-
-# Add the Richter scale images
-st.image('ritcher.jpg', color=color)
-st.image('ritcher.jpg', color=color)
-
-# Add the recommendations
-st.write('Recommendations:')
-st.write('* Stay away from buildings or structures that could collapse.')
-st.write('* Stay indoors if you are in a building.')
-st.write('* If you are outdoors, find a low-lying area and lie down.')
-
-# Add a map of the epicenter
-app.map(latitude, longitude)
-
-# Add a news feed
-st.write('Latest Earthquakes:')
-for earthquake in earthquakes:
-    mag_level = random.randint(1, 9)
-    if mag_level <= 4:
-        color = 'green'
-    elif mag_level <= 6:
-        color = 'orange'
-    else:
-        color = 'red'
-    st.write(earthquake['country'], f' ({mag}, {color})')
-
-# Show the app
-app.show()
-
-
+image2 = st.file_uploader("recomendaciones.jpg")
 
