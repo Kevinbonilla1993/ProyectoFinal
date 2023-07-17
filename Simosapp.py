@@ -43,7 +43,7 @@ image1 = st.image("ritcher.jpg")
 # Create a map centered at the earthquake location
 st.subheader("Locacion")
 earthquake_map = folium.Map(location=[latitude, longitude], zoom_start=10)
-folium.Marker(location=[latitud, longitud], popup="Locacion").add_to(earthquake_map)
+folium.Marker(location=[latitude, longitude], popup="Locacion").add_to(earthquake_map)
 folium_static(earthquake_map)
 
 # Display recommendations
