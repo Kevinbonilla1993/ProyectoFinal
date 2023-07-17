@@ -14,7 +14,6 @@ mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
 
-
 # Configuración de la página
 st.set_page_config(page_title="App Quake", page_icon=":earth_americas:")
 
