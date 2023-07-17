@@ -14,35 +14,50 @@ mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
 
-# Título de la app
+
+# Configuración de la página
+st.set_page_config(page_title="App Quake", page_icon=":earth_americas:")
+
+# Título y menú desplegable
 st.title("App Quake")
-
-# Menú desplegable
+st.sidebar.title("Interacciones")
 menu_options = ['Home', 'Interacciones']
-selected_option = st.sidebar.selectbox("Menú", menu_options)
+selected_option = st.sidebar.selectbox("Seleccione una opción", menu_options)
 
-# Mostrar el mapa centrado en el lugar del sismo
-st.map((latitude, longitude), zoom=8)
+# Mostrar el mapa centrado en la ubicación del sismo
+m = folium.Map(location=[latitude, longitude], zoom_start=8)
+folium.Marker([latitude, longitude], popup=f"{country}: {mag}").add_to(m)
+folium_static = folium.Figure(width=800, height=600)
+folium_static.add_child(m)
+st.markdown(folium_static._repr_html_(), unsafe_allow_html=True)
 
-# Información adicional
-st.header("Información adicional")
-st.subheader("Fecha: " + fecha)
-st.subheader("Profundidad: " + str(depth))
-st.subheader("Magnitud: " + str(mag))
+# Información adicional del sismo
+st.subheader("Información del sismo")
+st.write(f"Fecha: {fecha}")
+st.write(f"Profundidad: {depth} km")
+st.write(f"Magnitud: {mag}")
 
+# Dibujo interactivo de la escala de Richter
+st.subheader("Escala de Richter")
 # Dibujo interactivo de la escala de Richter
 st.subheader("Escala de Richter")
 st.image("richter.jpg", use_column_width=True)
 
 # Ubicación en longitud y latitud
-st.subheader("Ubicación")
-st.write("Latitud:", latitude)
-st.write("Longitud:", longitude)
+st.subheader("Ubicación en coordenadas")
+st.write(f"Latitud: {latitude}")
+st.write(f"Longitud: {longitude}")
 
-# Ubicación en formato de cadena
-st.subheader("Ubicación (string)")
-st.write(country)
+# Ubicación en formato de texto encima del mapa
+st.markdown(f"<span style='color: orange;'>Ubicación: {country}</span>", unsafe_allow_html=True)
 
-# Recomendaciones
+# Imagen de recomendaciones
+st.subheader("Recomendaciones")
 st.image("recomendaciones.jpg", use_column_width=True)
+
+
+
+
+
+
 
