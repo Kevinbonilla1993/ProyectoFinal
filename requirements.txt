@@ -4,3 +4,6 @@ datetime
 pandas
 pydeck
 Pillow
+folium
+streamlit-folium
+
