@@ -13,9 +13,28 @@ mag = result['val'][4]
 sistype = result['val'][5]
 date = result['val'][6]
 
-# Title bar
-with st.beta_container():
-    st.title("QuakeAlert")
+# Establecer el estilo de la barra superior
+st.markdown(
+    """
+    <style>
+    .reportview-container .main .block-container {
+        max-width: 100%;
+        padding-top: 1rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        padding-bottom: 1rem;
+    }
+    .reportview-container .main {
+        color: #fff;
+        background-color: #ff8c00;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Título de la aplicación
+st.title("¡QuakeAlert: El poder en tus manos!")
 st.write(f"Country: {country}")
 st.write(f"Latitude: {latitude}")
 st.write(f"Length: {longitude}")
