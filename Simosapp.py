@@ -48,19 +48,19 @@ st.markdown(
 )
 
 # Título de la aplicación
-st.title("QuakeAlert: Informando sobre Sismos", className="title")
+st.markdown("<h1 class='title'>QuakeAlert: Informando sobre Sismos</h1>", unsafe_allow_html=True)
 
 # Línea separadora
 st.write("", "", className="separator")
 
 # Mostrar los datos
-st.write(f"Pais: {country}", className="data")
-st.write(f"Latitud: {latitude}", className="data")
-st.write(f"Longitud: {longitude}", className="data")
-st.write(f"Profundidad: {depth}", className="data")
-st.write(f"Magnitud: {mag}", className="data")
-st.write(f"Tipo: {sistype}", className="data")
-st.write(f"Fecha: {date}", className="data")
+st.markdown(f"<p class='data'>Pais: {country}</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='data'>Latitud: {latitude}</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='data'>Longitud: {longitude}</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='data'>Profundidad: {depth}</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='data'>Magnitud: {mag}</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='data'>Tipo: {sistype}</p>", unsafe_allow_html=True)
+st.markdown(f"<p class='data'>Fecha: {date}</p>", unsafe_allow_html=True)
 
 # Display the images
 st.subheader("Escala de richter")
