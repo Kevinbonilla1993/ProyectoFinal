@@ -18,9 +18,10 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: #964b00; /* Código de color café */
+        background-color: #FF6E33; /* Código de color café */
         padding: 30px; /* Añade un espacio alrededor de la barra */
     }
+
 
     /* Estilo para el título */
     .title {
@@ -30,7 +31,14 @@ st.markdown(
     }
 
     /* Estilo para los datos */
+    .data-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
     .data {
+        flex-basis: 32%;
         font-size: 18px;
         color: #555555;
         margin-bottom: 10px;
@@ -53,7 +61,9 @@ st.markdown("<h1 class='title'>QuakeAlert: Informando sobre Sismos</h1>", unsafe
 # Línea separadora
 st.write("", "", className="separator")
 
-# Mostrar los datos
+# Mostrar los datos en formato 2x3
+st.markdown("<div class='data-container'>", unsafe_allow_html=True)
+
 st.markdown(f"<p class='data'>Pais: {country}</p>", unsafe_allow_html=True)
 st.markdown(f"<p class='data'>Latitud: {latitude}</p>", unsafe_allow_html=True)
 st.markdown(f"<p class='data'>Longitud: {longitude}</p>", unsafe_allow_html=True)
@@ -61,6 +71,8 @@ st.markdown(f"<p class='data'>Profundidad: {depth}</p>", unsafe_allow_html=True)
 st.markdown(f"<p class='data'>Magnitud: {mag}</p>", unsafe_allow_html=True)
 st.markdown(f"<p class='data'>Tipo: {sistype}</p>", unsafe_allow_html=True)
 st.markdown(f"<p class='data'>Fecha: {date}</p>", unsafe_allow_html=True)
+
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Display the images
 st.subheader("Escala de richter")
