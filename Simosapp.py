@@ -23,7 +23,7 @@ app.write('Country:', country)
 
 # Add the latitude and longitude
 app.write('Latitude:', latitude)
-app.write('Longitude:', length)
+app.write('Longitude:', longitude)
 
 # Add the depth
 app.write('Depth:', depth)
@@ -39,7 +39,7 @@ else:
 app.write('Magnitude:', mag, f' ({color})')
 
 # Add the type
-app.write('Type:', typosis)
+app.write('Type:', sistype)
 
 # Add the date
 app.write('Date:', date)
@@ -55,7 +55,7 @@ st.write('* Stay indoors if you are in a building.')
 st.write('* If you are outdoors, find a low-lying area and lie down.')
 
 # Add a map of the epicenter
-app.map(latitude, length)
+app.map(latitude, longitude)
 
 # Add a news feed
 st.write('Latest Earthquakes:')
