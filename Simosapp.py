@@ -19,7 +19,7 @@ app = st.empty()
 app.title('Earthquake App')
 
 # Add the country
-app.write('Country:', country)
+app.write('country:', country)
 
 # Add the latitude and longitude
 app.write('Latitude:', latitude)
