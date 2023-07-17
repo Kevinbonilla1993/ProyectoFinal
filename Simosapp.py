@@ -15,20 +15,20 @@ date = result['val'][6]
 st.title("Earthquake Alert App")
 st.write(f"Country: {country}")
 st.write(f"Latitude: {latitude}")
-st.write(f"Length: {length}")
+st.write(f"Length: {longitude}")
 st.write(f"Depth: {depth}")
 st.write(f"Magnitude: {mag}")
-st.write(f"Typosis: {typosis}")
+st.write(f"Typosis: {sistype}")
 st.write(f"Date: {date}")
 
 # Display the images
-st.subheader("Escalade Richter Images")
+st.subheader("Escala de richter")
 image1 = st.file_uploader("ritcher.jpg")
 
 # Create a map centered at the earthquake location
-st.subheader("Earthquake Location")
+st.subheader("Locacion")
 earthquake_map = folium.Map(location=[latitude, longitude], zoom_start=10)
-folium.Marker(location=[latitude, longitude], popup="Earthquake Location").add_to(earthquake_map)
+folium.Marker(location=[latitude, longitude], popup="Locacion").add_to(earthquake_map)
 folium_static(earthquake_map)
 
 # Notification button
