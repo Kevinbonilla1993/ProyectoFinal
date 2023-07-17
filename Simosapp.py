@@ -23,7 +23,7 @@ st.write(f"Date: {date}")
 
 # Display the images
 st.subheader("Escala de richter")
-image1 = st.image(ritcher.jpg)
+image1 = st.image("ritcher.jpg")
 
 # Create a map centered at the earthquake location
 st.subheader("Locacion")
