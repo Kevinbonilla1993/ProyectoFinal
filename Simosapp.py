@@ -2,107 +2,65 @@ import streamlit as st
 from PIL import Image
 import pandas as pd
 import datetime
-import pydeck as pdk
-
-# Design
+import streamlit as st
+from streamlit_folium import folium_static
+import folium
+from folium.plugins import MarkerCluster
+# Configuración de la página
 st.set_page_config(page_title="Alertas Sismicas",
                    page_icon="bar_chart:",
                    layout="wide")
 
-result=st.experimental_get_query_params() #Get params of url
 
-country=result['val'][0]
-latitude=result['val'][1]
-longitude=result['val'][2]
-depth=result['val'][3]
-mag=result['val'][4]
-sistype=result['val'][5]
+# Obtener parámetros de la URL
+result = st.experimental_get_query_params()
 
-# Creating layout
-if sistype=='leve':
-    level='Leve :large_green_circle:'
-    delta='ML'
-    rgba='[0,204,0,160]'
-    recm='bajo.jpeg'
-elif sistype=='medio':
-    level='Medio :large_yellow_circle:'
-    delta='ML'
-    rgba='[255,255,0,160]'
-    recm='medio.jpeg'
-elif sistype=='alto':
-    level='Alto :red_circle:'
-    delta='-ML'
-    rgba='[255,0,0,160]'
-    recm='bajo.jpg'
-else:
-    level=':white_circle: Desconocido'
-    delta='ML'
-    rgba='[255,255,0,160]'
-    recm='bajo.jpg'
+country = result['val'][0]
+latitude = result['val'][1]
+longitude = result['val'][2]
+depth = result['val'][3]
+mag = result['val'][4]
+sistype = result['val'][5]
+fecha = result['val'][6]
+# Configuración de la página
+st.set_page_config(page_title="App Quake", layout="wide")
 
-if country=='usa':
-    flag=':flag-us:'
-elif country=='japon':
-    flag=':flag-jp:'
-elif country=='chile':
-     flag=':flag-cl:'
-else:
-    flag=':flag-us:'
+# Título de la app
+st.title("App Quake")
 
-menu = ['Home', 'Feedback']
-choice = st.sidebar.selectbox("Menu", menu)
+# Menú desplegable
+menu_options = ["Home", "Interacciones"]
+choice = st.sidebar.selectbox("Menu", menu_options)
 
-if choice=='Home':
+# Mapa centrado en la ubicación del sismo
+m = folium.Map(location=[latitude, longitude], zoom_start=8)
 
-    d={'lat':[float(latitude)], 'lon':[float(longitude)]}
-    df=pd.DataFrame(d)
-    col1,col2,col3=st.columns(3)
-    col1.metric(label='Magnitud', value=mag, delta=delta)
-    col2.metric(label='Profundidad', value=depth, delta='Km')
-    col3.markdown('## [Ver últimos 20 :eye:](https://us-central1-alerta-sismos-386306.cloudfunctions.net/function-mongo)')
+# Marcador en la ubicación del sismo
+marker = folium.Marker([latitude, longitude], popup=sistype)
+marker.add_to(m)
 
-    st.pydeck_chart(pdk.Deck(
-        map_style=None,
-        initial_view_state=pdk.ViewState(
-        latitude=float(latitude),
-        longitude=float(longitude),
-        zoom=5,
-        pitch=50,
-    ),
-    layers=[
-        pdk.Layer(
-            'ScatterplotLayer',
-            data=df,
-            get_position='[lon, lat]',
-            get_color=rgba,
-            get_radius=float(mag)*8000,
-            ),
-        ],
-    ))
+# Dibujar la escala de Richter
+st.subheader("Escala de Richter")
+st.image("richter_scale.png")
 
-    #Recommendations
-    st.markdown('***')
-    st.markdown('## Recomendaciones')
-    image = Image.open('recomendaciones.jpg')
-    image_b=Image.open(recm)
-    st.image(image_b)
-    st.image(image)
+# Información del sismo
+st.subheader("Información del sismo")
+col1, col2 = st.beta_columns(2)
+with col1:
+    st.write(f"Fecha: {fecha}")
+    st.write(f"Profundidad: {depth} km")
+with col2:
+    st.write(f"Magnitud: {mag}")
 
-if choice=='Feedback':
-    st.subheader('Ayúdanos a mejorar...')
-    with st.form(key='formulario'):
-        fecha = datetime.datetime.now()
-        formatted_datetime = fecha.strftime('%d/%m/%y %H:%M:%S')
-        input1 = st.selectbox('Sentiste el ultimo sismo?', options=['Sí', 'No'])
-        input2 = st.selectbox("Califica nuestros servicios (bajo 1 y alto 5)", options=['1', '2', '3', '4', '5'])
-        input3 = st.selectbox('Compartirías nuestra aplicación?', options=['Sí', 'No'])
-        input4 = st.text_area('Algún comentario de mejora?')
+# Ubicación en longitud y latitud
+st.subheader("Ubicación en coordenadas")
+st.write(f"Latitud: {latitude}")
+st.write(f"Longitud: {longitude}")
 
-        row = [formatted_datetime, input1, input2, input3, input4]
-        boton = st.form_submit_button(label='Subir')
-    if boton:
-        st.success('Has subido tu información con éxito!')
-        worksheet.append_row(row)
-    flag=':flag-cl:'
-else:
-    flag=':flag-us:'
+# Ubicación en formato de texto
+st.subheader("Ubicación")
+st.markdown(f"<span style='color: orange;'>{sistype}</span>", unsafe_allow_html=True)
+
+# Mostrar el mapa
+st.subheader("Mapa")
+folium_static(m)
