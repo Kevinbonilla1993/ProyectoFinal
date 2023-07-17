@@ -23,7 +23,7 @@ st.markdown(
     }
 
 
-    /* Estilo para el título */
+   /* Estilo para el título */
     .title {
         font-size: 36px;
         color: #333333;
@@ -32,16 +32,14 @@ st.markdown(
 
     /* Estilo para los datos */
     .data-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
     }
 
     .data {
-        flex-basis: 32%;
         font-size: 18px;
         color: #555555;
-        margin-bottom: 10px;
     }
 
     /* Estilo para la línea separadora */
@@ -61,7 +59,7 @@ st.markdown("<h1 class='title'>QuakeAlert: Informando sobre Sismos</h1>", unsafe
 # Línea separadora
 st.write("", "", className="separator")
 
-# Mostrar los datos en formato 2x3
+# Mostrar los datos en formato 3 columnas
 st.markdown("<div class='data-container'>", unsafe_allow_html=True)
 
 st.markdown(f"<p class='data'>Pais: {country}</p>", unsafe_allow_html=True)
