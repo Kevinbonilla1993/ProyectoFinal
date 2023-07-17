@@ -13,27 +13,14 @@ mag = float(result['val'][4])
 sistype = result['val'][5]
 date = result['val'][6]
 
-# Crear la ventana de la aplicación
-app = tk.Tk()
-app.title("Quake Alert")
-app.geometry("400x300")
-app.configure(bg="orange")
+# Crea un mapa centrado en las coordenadas proporcionadas
+mapa = folium.Map(location=[latitude, longitude], zoom_start=15)
 
-# Crear el título de la aplicación
-title_label = tk.Label(app, text="Quake Alert", font=("Helvetica", 20, "bold"), bg="orange")
-title_label.pack(pady=10)
+# Agrega un marcador en las coordenadas proporcionadas
+folium.Marker([latitude, longitude], popup="country").add_to(mapa)
 
-# Crear el separador
-separator = tk.Frame(app, height=2, bd=1, relief="sunken", bg="black")
-separator.pack(fill="x", padx=10)
-
-# Crear el mapa o la información del sismo
-earthquake_info_label = tk.Label(app, text=f"Latest Earthquake in {country}\nMagnitude: {mag}\nDepth: {depth}\nType: {sistype}\nDate: {date}", font=("Helvetica", 12), bg="orange")
-earthquake_info_label.pack(pady=10)
-
-# Puedes agregar aquí el código para mostrar un mapa con la ubicación del sismo utilizando librerías adicionales.
-
-app.mainloop()
+# Guarda el mapa en un archivo HTML
+mapa.save("mi_mapa.html")
 
 
 
