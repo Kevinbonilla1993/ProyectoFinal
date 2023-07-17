@@ -6,11 +6,6 @@ import streamlit as st
 from streamlit_folium import folium_static
 import folium
 from folium.plugins import MarkerCluster
-# Configuración de la página
-st.set_page_config(page_title="Alertas Sismicas",
-                   page_icon="bar_chart:",
-                   layout="wide")
-
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
@@ -22,6 +17,7 @@ depth = result['val'][3]
 mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
+
 # Configuración de la página
 st.set_page_config(page_title="App Quake", layout="wide")
 
