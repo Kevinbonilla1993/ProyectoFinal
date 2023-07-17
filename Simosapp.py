@@ -14,68 +14,35 @@ mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
 
-
-# Configuración de la página
-st.set_page_config(page_title="App Quake", layout="wide")
-
 # Título de la app
 st.title("App Quake")
 
 # Menú desplegable
-menu_options = ["Home", "Interacciones"]
-menu_choice = st.sidebar.selectbox("Menú", menu_options)
+menu_options = ['Home', 'Interacciones']
+selected_option = st.sidebar.selectbox("Menú", menu_options)
 
-# Mapa centrado en la ubicación del sismo
-st.header("Mapa")
-map_center = [latitude, longitude]
-map_zoom = 10
-map_height = 600
-m = folium.Map(location=map_center, zoom_start=map_zoom, height=map_height)
-folium.Marker(location=map_center, popup="Ubicación del sismo").add_to(m)
-folium_static = st.markdown(folium.Map(location=map_center, zoom_start=map_zoom)._repr_html_(), unsafe_allow_html=True)
+# Mostrar el mapa centrado en el lugar del sismo
+st.map((latitude, longitude), zoom=8)
 
-# Información adicional del sismo
+# Información adicional
 st.header("Información adicional")
-st.subheader("Fecha")
-st.write(fecha)
-st.subheader("Profundidad")
-st.write(depth)
-st.subheader("Magnitud")
-st.write(mag)
+st.subheader("Fecha: " + fecha)
+st.subheader("Profundidad: " + str(depth))
+st.subheader("Magnitud: " + str(mag))
 
-# Representación interactiva de la escala de Richter
+# Dibujo interactivo de la escala de Richter
 st.subheader("Escala de Richter")
-richter_scale = """
-            <style>
-                .richter-scale {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-                .richter-scale .bar {
-                    width: 100%;
-                    height: 30px;
-                    background-color: #CCCCCC;
-                }
-                .richter-scale .indicator {
-                    width: 0%;
-                    height: 30px;
-                    background-color: #FFA500;
-                }
-            </style>
-            <div class="richter-scale">
-                <div class="bar"></div>
-                <div class="indicator" style="width:{magnitude_percentage}%;"></div>
-            </div>
-        """
-magnitude_percentage = (mag / 9) * 100  # Escala de Richter normalizada de 0 a 100
-st.markdown(richter_scale.format(magnitude_percentage=magnitude_percentage), unsafe_allow_html=True)
+st.image("richter.jpg", use_column_width=True)
 
 # Ubicación en longitud y latitud
-st.subheader("Ubicación (Longitud, Latitud)")
-st.write(f"{longitude}, {latitude}")
+st.subheader("Ubicación")
+st.write("Latitud:", latitude)
+st.write("Longitud:", longitude)
 
-# Ubicación en texto
-st.subheader("Ubicación (Texto)")
-st.markdown(f"<span style='color: orange;'>{country}</span>", unsafe_allow_html=True)
+# Ubicación en formato de cadena
+st.subheader("Ubicación (string)")
+st.write(country)
+
+# Recomendaciones
+st.image("recomendaciones.jpg", use_column_width=True)
 
