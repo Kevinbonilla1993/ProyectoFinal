@@ -1,4 +1,4 @@
-import streamlit as st
+achbimport streamlit as st
 from PIL import Image
 import pandas as pd
 import datetime
@@ -25,7 +25,7 @@ st.set_page_config(page_title="App Quake", layout="wide")
 st.title("App Quake")
 
 # Menú desplegable
-menu_options = ["Home", "Interacciones"]
+menu_options = ["Inicio", "Feedback"]
 choice = st.sidebar.selectbox("Menu", menu_options)
 
 # Mapa centrado en la ubicación del sismo
