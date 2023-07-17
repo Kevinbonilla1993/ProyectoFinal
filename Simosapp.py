@@ -29,6 +29,8 @@ st.markdown(
 
 # Título de la aplicación
 st.title("¡QuakeAlert: El poder en tus manos!")
+# Línea separadora
+st.write("---")
 st.write(f"Pais: {country}")
 st.write(f"Latitud: {latitude}")
 st.write(f"Longitud: {longitude}")
