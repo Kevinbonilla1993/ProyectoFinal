@@ -12,8 +12,14 @@ mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
 
-# Set the title of the app
+# Configuración de la página
+st.set_page_config(page_title="App Quake")
+
+# Título y menú desplegable
 st.title("App Quake")
+st.sidebar.title("Interacciones")
+menu_options = ['Home', 'Interacciones']
+selected_option = st.sidebar.selectbox("Seleccione una opción", menu_options)
 
 # Create a map centered on the earthquake location
 map = folium.Map(location=[latitude, longitude], zoom_start=8)
@@ -21,17 +27,14 @@ map = folium.Map(location=[latitude, longitude], zoom_start=8)
 # Add the earthquake location to the map
 folium.Marker([latitude, longitude], popup=f"Earthquake Location").add_to(map)
 
-# Create a dropdown menu
-st.sidebar.selectbox("Menu", ["Home", "Interactions"])
-
 # Add more information below the map
 st.subheader("Earthquake Details")
 st.write("Date:", fecha)
 st.write("Depth:", depth)
 st.write("Magnitude:", mag)
 
-# Create an interactive Richter scale
-scale = st.slider("Richter Scale", 1.0, 9.9, value=mag)
+# Slider de la escala de Richter
+scale = st.slider("Richter Scale", 1.0, 9.9, value=float(mag))
 
 # Add the location in longitude and latitude
 st.write("Longitude:", longitude)
