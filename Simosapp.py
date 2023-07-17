@@ -13,7 +13,9 @@ mag = result['val'][4]
 sistype = result['val'][5]
 date = result['val'][6]
 
-st.title("Earthquake Alert App")
+# Title bar
+with st.beta_container():
+    st.title("QuakeAlert")
 st.write(f"Country: {country}")
 st.write(f"Latitude: {latitude}")
 st.write(f"Length: {longitude}")
