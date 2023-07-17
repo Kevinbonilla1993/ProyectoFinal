@@ -14,13 +14,33 @@ sistype = result['val'][5]
 date = result['val'][6]
 
 # Establecer el estilo de la barra superior
-# Establecer el estilo de la barra superior
 st.markdown(
     """
     <style>
     .stApp {
-        background-color: #FF6E33; /* Código de color café */
+        background-color: #964b00; /* Código de color café */
         padding: 30px; /* Añade un espacio alrededor de la barra */
+    }
+
+    /* Estilo para el título */
+    .title {
+        font-size: 36px;
+        color: #333333;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo para los datos */
+    .data {
+        font-size: 18px;
+        color: #555555;
+        margin-bottom: 10px;
+    }
+
+    /* Estilo para la línea separadora */
+    .separator {
+        height: 3px;
+        background-color: #555555;
+        margin: 20px 0;
     }
     </style>
     """,
@@ -28,16 +48,19 @@ st.markdown(
 )
 
 # Título de la aplicación
-st.title("¡QuakeAlert:  Mantente Informado sobre los Últimos Sismos!")
+st.title("QuakeAlert: Informando sobre Sismos", className="title")
+
 # Línea separadora
-st.write("---")
-st.write(f"Pais: {country}")
-st.write(f"Latitud: {latitude}")
-st.write(f"Longitud: {longitude}")
-st.write(f"Profundidad: {depth}")
-st.write(f"Magnitud: {mag}")
-st.write(f"Tipo: {sistype}")
-st.write(f"Fecha: {date}")
+st.write("", "", className="separator")
+
+# Mostrar los datos
+st.write(f"Pais: {country}", className="data")
+st.write(f"Latitud: {latitude}", className="data")
+st.write(f"Longitud: {longitude}", className="data")
+st.write(f"Profundidad: {depth}", className="data")
+st.write(f"Magnitud: {mag}", className="data")
+st.write(f"Tipo: {sistype}", className="data")
+st.write(f"Fecha: {date}", className="data")
 
 # Display the images
 st.subheader("Escala de richter")
