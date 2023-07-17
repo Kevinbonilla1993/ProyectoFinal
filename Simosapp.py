@@ -1,6 +1,4 @@
 import streamlit as st
-import folium
-from streamlit_folium import folium_static
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
@@ -18,35 +16,8 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: #FF6E33; /* Código de color café */
+        background-color: #964b00; /* Código de color café */
         padding: 30px; /* Añade un espacio alrededor de la barra */
-    }
-
-
-   /* Estilo para el título */
-    .title {
-        font-size: 36px;
-        color: #333333;
-        margin-bottom: 20px;
-    }
-
-    /* Estilo para los datos */
-    .data-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 20px;
-    }
-
-    .data {
-        font-size: 18px;
-        color: #555555;
-    }
-
-    /* Estilo para la línea separadora */
-    .separator {
-        height: 3px;
-        background-color: #555555;
-        margin: 20px 0;
     }
     </style>
     """,
@@ -54,27 +25,10 @@ st.markdown(
 )
 
 # Título de la aplicación
-st.markdown("<h1 class='title'>QuakeAlert: Informando sobre Sismos</h1>", unsafe_allow_html=True)
+st.title("QuakeAlert: Informando sobre Sismos")
 
 # Línea separadora
-st.write("", "", className="separator")
-
-# Mostrar los datos en formato 3 columnas
-st.markdown("<div class='data-container'>", unsafe_allow_html=True)
-
-st.markdown(f"<p class='data'>Pais: {country}</p>", unsafe_allow_html=True)
-st.markdown(f"<p class='data'>Latitud: {latitude}</p>", unsafe_allow_html=True)
-st.markdown(f"<p class='data'>Longitud: {longitude}</p>", unsafe_allow_html=True)
-st.markdown(f"<p class='data'>Profundidad: {depth}</p>", unsafe_allow_html=True)
-st.markdown(f"<p class='data'>Magnitud: {mag}</p>", unsafe_allow_html=True)
-st.markdown(f"<p class='data'>Tipo: {sistype}</p>", unsafe_allow_html=True)
-st.markdown(f"<p class='data'>Fecha: {date}</p>", unsafe_allow_html=True)
-
-st.markdown("</div>", unsafe_allow_html=True)
-
-# Display the images
-st.subheader("Escala de richter")
-image1 = st.image("ritcher.jpg")
+st.write("---")
 
 # Create a map centered at the earthquake location
 st.subheader("Locacion")
@@ -82,9 +36,16 @@ earthquake_map = folium.Map(location=[latitude, longitude], zoom_start=10)
 folium.Marker(location=[latitude, longitude], popup="Locacion").add_to(earthquake_map)
 folium_static(earthquake_map)
 
-# Display recommendations
-st.subheader("Recommendations")
-recommendation = st.text_area("Enter your recommendations here.")
+# Mostrar los datos
+st.write(f"Pais: {country}")
+st.write(f"Latitud: {latitude}")
+st.write(f"Longitud: {longitude}")
+st.write(f"Profundidad: {depth}")
+st.write(f"Magnitud: {mag}")
+st.write(f"Tipo: {sistype}")
+st.write(f"Fecha: {date}")
 
-image2 = st.image("recomendaciones.jpg")
+
+
+
 
