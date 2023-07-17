@@ -35,10 +35,6 @@ m = folium.Map(location=[latitude, longitude], zoom_start=8)
 marker = folium.Marker([latitude, longitude], popup=sistype)
 marker.add_to(m)
 
-# Dibujar la escala de Richter
-st.subheader("Escala de Richter")
-st.image("richter_scale.png")
-
 # Información del sismo
 st.subheader("Información del sismo")
 col1, col2 = st.beta_columns(2)
