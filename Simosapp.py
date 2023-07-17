@@ -1,59 +1,39 @@
 import streamlit as st
 import folium
 
-# Datos del sismo
-
-# Obtener parámetros de la URL
-result = st.experimental_get_query_params()
-
-country = result['val'][0]
-latitude = result['val'][1]
-longitude = result['val'][2]
-depth = result['val'][3]
-mag = result['val'][4]
-sistype = result['val'][5]
-fecha = result['val'][6]
-
-# Configuración de la página
-st.set_page_config(page_title="App Quake", page_icon=":earth_americas:")
-
-# Título y menú desplegable
+# Set the title of the app
 st.title("App Quake")
-st.sidebar.title("Interacciones")
-menu_options = ['Home', 'Interacciones']
-selected_option = st.sidebar.selectbox("Seleccione una opción", menu_options)
 
-# Mostrar el mapa centrado en la ubicación del sismo
-m = folium.Map(location=[latitude, longitude], zoom_start=8)
-folium.Marker([latitude, longitude], popup=f"{country}: {mag}").add_to(m)
-folium_static = folium.Figure(width=800, height=600)
-folium_static.add_child(m)
-st.markdown(folium_static._repr_html_(), unsafe_allow_html=True)
+# Create a map centered on the earthquake location
+map = folium.Map(location=[latitude, longitude], zoom_start=8)
 
-# Información adicional del sismo
-st.subheader("Información del sismo")
-st.write(f"Fecha: {fecha}")
-st.write(f"Profundidad: {depth} km")
-st.write(f"Magnitud: {mag}")
+# Add the earthquake location to the map
+folium.Marker([latitude, longitude], popup=f"Earthquake Location").add_to(map)
 
-# Dibujo interactivo de la escala de Richter
-st.subheader("Escala de Richter")
-st.image("ritcher.jpg", use_column_width=True)
+# Create a dropdown menu
+st.sidebar.selectbox("Menu", ["Home", "Interactions"])
 
-# Ubicación en longitud y latitud
-st.subheader("Ubicación en coordenadas")
-st.write(f"Latitud: {latitude}")
-st.write(f"Longitud: {longitude}")
+# Add more information below the map
+st.subheader("Earthquake Details")
+st.write("Date:", date)
+st.write("Depth:", depth)
+st.write("Magnitude:", mag)
 
-# Ubicación en formato de texto encima del mapa
-st.markdown(f"<span style='color: orange;'>Ubicación: {country}</span>", unsafe_allow_html=True)
+# Create an interactive Richter scale
+scale = st.slider("Richter Scale", 1.0, 9.9, value=mag)
 
-# Imagen de recomendaciones
-st.subheader("Recomendaciones")
-st.image("recomendaciones.jpg", use_column_width=True)
+# Add the location in longitude and latitude
+st.write("Longitude:", longitude)
+st.write("Latitude:", latitude)
 
+# Add the location in strings above the map
+st.write(f"Earthquake Location: {country} ({latitude}, {longitude})")
 
+# Add an image below the dropdown menu
+st.image("https://i.imgur.com/15j871F.png")
 
+# Display the map
+st.map(map)
 
 
 
