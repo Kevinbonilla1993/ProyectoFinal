@@ -39,9 +39,7 @@ st.write(f"Magnitud: {mag}")
 
 # Dibujo interactivo de la escala de Richter
 st.subheader("Escala de Richter")
-# Dibujo interactivo de la escala de Richter
-st.subheader("Escala de Richter")
-st.image("richter.jpg", use_column_width=True)
+st.image("ritcher.jpg", use_column_width=True)
 
 # Ubicación en longitud y latitud
 st.subheader("Ubicación en coordenadas")
