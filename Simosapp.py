@@ -35,24 +35,4 @@ m = folium.Map(location=[latitude, longitude], zoom_start=8)
 marker = folium.Marker([latitude, longitude], popup=sistype)
 marker.add_to(m)
 
-# Información del sismo
-st.subheader("Información del sismo")
-col1, col2 = st.beta_columns(2)
-with col1:
-    st.write(f"Fecha: {fecha}")
-    st.write(f"Profundidad: {depth} km")
-with col2:
-    st.write(f"Magnitud: {mag}")
 
-# Ubicación en longitud y latitud
-st.subheader("Ubicación en coordenadas")
-st.write(f"Latitud: {latitude}")
-st.write(f"Longitud: {longitude}")
-
-# Ubicación en formato de texto
-st.subheader("Ubicación")
-st.markdown(f"<span style='color: orange;'>{sistype}</span>", unsafe_allow_html=True)
-
-# Mostrar el mapa
-st.subheader("Mapa")
-folium_static(m)
