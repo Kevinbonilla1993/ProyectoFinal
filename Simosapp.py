@@ -42,6 +42,13 @@ st.write(f"Longitud: {longitude}")
 st.subheader("Ubicación")
 st.markdown(f"<span style='color: orange;'>{country}</span>", unsafe_allow_html=True)
 
+# Mapa centrado en la ubicación del sismo
+m = folium.Map(location=[latitude, longitude], zoom_start=8)
+
+# Marcador en la ubicación del sismo
+marker = folium.Marker([latitude, longitude], popup=sistype)
+marker.add_to(m)
+
 # Mostrar el mapa
 st.subheader("Mapa")
 folium_static(m)
@@ -50,12 +57,6 @@ folium_static(m)
 menu_options = ["Inicio", "Detalles Sismo"]
 choice = st.sidebar.selectbox("Menu", menu_options)
 
-# Mapa centrado en la ubicación del sismo
-m = folium.Map(location=[latitude, longitude], zoom_start=8)
-
-# Marcador en la ubicación del sismo
-marker = folium.Marker([latitude, longitude], popup=sistype)
-marker.add_to(m)
 
 # Dibujar la escala de Richter
 st.subheader("Escala de Richter")
