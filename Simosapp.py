@@ -43,7 +43,7 @@ st.markdown("---")
 # Función para mostrar el mapa con los últimos sismos
 def show_map():
     st.subheader("Mapa de los últimos sismos")
-    m = folium.Map(location=[df['Latitude'].mean(), df['Longitude'].mean()], zoom_start=3)
+    m = folium.Map(location=['Latitude'].mean(), 'Longitude'].mean()], zoom_start=3)
     for i in range(len(df)):
         folium.Marker([df['Latitude'][i], df['Longitude'][i]], popup=f"Magnitud: {df['Magnitude'][i]} | Profundidad: {df['Depth'][i]} km").add_to(m)
     return m
