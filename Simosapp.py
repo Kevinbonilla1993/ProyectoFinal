@@ -34,9 +34,8 @@ st.markdown("---")
 # Crear un mapa centrado en la ubicación proporcionada
 mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
 
-# Añadir círculo en la ubicación del sismo con estilo personalizado
-folium.CircleMarker(location=[latitude, longitude], radius=50, popup="Magnitud: " + str(mag),
-                    fill_color='red', color='black', fill_opacity=0.7).add_to(mapa)
+folium.Marker([latitude, longitude], popup="Epicentro del Sismo").add_to(folium_map)
+    st.write(folium_map._repr_html_(), unsafe_allow_html=True)
 
 folium_static(mapa)
 
