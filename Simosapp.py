@@ -6,7 +6,7 @@ import time
 import requests
 import json 
 import pytz
-
+import pandas as pd
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
 
