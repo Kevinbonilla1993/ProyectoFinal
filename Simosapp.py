@@ -41,10 +41,10 @@ st.markdown('Esta aplicación proporciona información detallada sobre sismos.')
 st.markdown("---")
 
 st.subheader("Mapa de los últimos sismos")
-    m = folium.Map(location=[df['Latitude'].mean(), df['Longitude'].mean()], zoom_start=3)
-    for i in range(len(df)):
-        folium.Marker([df['Latitude'][i], df['Longitude'][i]], popup=f"Magnitud: {df['Magnitude'][i]} | Profundidad: {df['Depth'][i]} km").add_to(m)
-    return m
+m = folium.Map(location=[df['Latitude'].mean(), df['Longitude'].mean()], zoom_start=3)
+for i in range(len(df)):
+    folium.Marker([df['Latitude'][i], df['Longitude'][i]], popup=f"Magnitud: {df['Magnitude'][i]} | Profundidad: {df['Depth'][i]} km").add_to(m)
+return m
 
 # Información del sismo
 st.subheader("Información del sismo")
