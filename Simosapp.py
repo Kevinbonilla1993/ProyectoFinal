@@ -2,9 +2,8 @@ from streamlit_folium import folium_static
 import streamlit as st
 import folium
 from datetime import datetime
-import pytz
-import pydeck as pdk
 import time
+import request
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
