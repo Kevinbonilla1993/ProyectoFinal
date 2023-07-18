@@ -50,11 +50,15 @@ def show_map():
 
 # Función para mostrar los detalles del último sismo
 def show_details():
-    st.subheader("Detalles del último sismo")
-    st.write(f"Fecha: {df['Date'][0]}")
-    st.write(f"País: {df['Country'][0]}")
-    st.write(f"Magnitud: {df['Magnitude'][0]}")
-    st.write(f"Profundidad: {df['Depth'][0]} km")
+    st.subheader("Detalles del sismo")
+    st.write(f"País: {country}")
+    st.write(f"Latitud: {latitude}")
+    st.write(f"Longitud: {longitude}")
+    st.write(f"Magnitud: {mag}")
+    st.write(f"Profundidad: {depth} km")
+    st.write(f"Tipo de sismo: {sistype}")
+    st.write(f"Fecha: {fecha}")
+    
 # Mostrar el mapa y los detalles
 col1, col2 = st.columns(2)
 with col1:
