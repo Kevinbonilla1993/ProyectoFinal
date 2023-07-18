@@ -22,8 +22,7 @@ st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
 
 # Carga del GIF desde el directorio local
 gif_path = "quake_alert.gif"
-width = 200
-st.video(gif_path, width=width)
+st.video(gif_path,use_column_width=True)
 
 # Estilo personalizado para el título de la app
 # st.title("🚀 QuakeAlert 🌎")
