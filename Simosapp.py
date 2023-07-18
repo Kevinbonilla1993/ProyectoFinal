@@ -62,7 +62,7 @@ def show_details():
 # Mostrar el mapa y los detalles
 col1, col2 = st.columns(2)
 with col1:
-    show_map()
+    st.write(show_map())
 
 with col2:
     show_details()
