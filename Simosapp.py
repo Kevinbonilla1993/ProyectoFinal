@@ -31,15 +31,10 @@ st.image(gif_path,use_column_width=True)
 # Separadores
 st.markdown("---")
 
+# Mostrar el mapa interactivo con el epicentro del sismo y el marcador
 st.subheader("Epicentro del Sismo")
-folium_map = folium.Map(location=[latitude, longitude], zoom_start=8)
-folium.Marker([latitude, longitude], popup="Epicentro del Sismo").add_to(folium_map)
+st.map((latitude, longitude), zoom=8, markers=[(latitude, longitude)])
 
-# Convertir el mapa a HTML
-map_html = folium_map._repr_html_()
-
-# Mostrar el mapa en Streamlit utilizando el componente personalizado
-html(folium_map._repr_html_(), width=700, height=500)
 st.subheader("Detalles del sismo")
 
 # Función para mostrar detalles con un diseño más creativo
