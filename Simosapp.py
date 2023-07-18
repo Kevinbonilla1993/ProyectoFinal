@@ -182,23 +182,23 @@ col1.image(gif_path,use_column_width=True)
 col2.subheader("QuakeAlert")
 
 # Columna 3: Mostrar el menú desplegable
-  col3.subheader("Imagen según magnitud del sismo")
-    if 0 < mag <= 1:
-        col3.image("1.jpeg", use_column_width=True)
-    elif 1 < mag <= 2:
-        col3.image("2.jpeg", use_column_width=True)
-    elif 2 < mag <= 3:
-        col3.image("3.jpeg", use_column_width=True)
-    elif 3 < mag <= 4:
-        col3.image("4.jpeg", use_column_width=True)
-    elif 4 < mag <= 5:
-        col3.image("5.jpeg", use_column_width=True)
-    elif 5 < mag <= 6:
-        col3.image("6.jpeg", use_column_width=True)
-    elif 6 < mag <= 7:
-        col3.image("7.jpeg", use_column_width=True)
-    elif 7 < mag <= 8:
-        col3.image("8.jpeg", use_column_width=True)
+col3.subheader("Imagen según magnitud del sismo")
+if 0 < mag <= 1:
+    col3.image("1.jpeg", use_column_width=True)
+elif 1 < mag <= 2:
+    col3.image("2.jpeg", use_column_width=True)
+elif 2 < mag <= 3:
+    col3.image("3.jpeg", use_column_width=True)
+elif 3 < mag <= 4:
+    col3.image("4.jpeg", use_column_width=True)
+elif 4 < mag <= 5:
+    col3.image("5.jpeg", use_column_width=True)
+elif 5 < mag <= 6:
+    col3.image("6.jpeg", use_column_width=True)
+elif 6 < mag <= 7:
+    col3.image("7.jpeg", use_column_width=True)
+elif 7 < mag <= 8:
+    col3.image("8.jpeg", use_column_width=True)
 st.sidebar.title("Menú desplegable")
 
 # Opciones del menú desplegable
