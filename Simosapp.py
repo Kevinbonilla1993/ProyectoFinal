@@ -127,11 +127,6 @@ st.subheader("Respuestas de Encuesta Guardadas")
 for response in st.session_state.survey_responses:
     st.write(response)
 
-# Dibujar la escala de Richter
-st.subheader("Escala de Richter")
-st.image("ritcher.jpg")
-
-
 
 
 
