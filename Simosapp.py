@@ -28,7 +28,7 @@ gif_path = "quake_alert..gif"
 col1.image(gif_path,use_column_width=True)
 
 # Columna 2: Mostrar el nombre de la página y opciones de sismos
-col2.title("🚀 QuakeAlert 🌎")
+col2.subheader("QuakeAlert")
 
 # Columna 3: Mostrar el menú desplegable
 st.sidebar.title("Menú desplegable")
@@ -42,10 +42,6 @@ if pagina_seleccionada == "Inicio":
     mostrar_inicio()
 #elif pagina_seleccionada == "Últimos sismos":
  #   continue
-
-# Estilo personalizado para el título de la app
-# st.title("🚀 QuakeAlert 🌎")
-# st.markdown("Bienvenido a QuakeAlert, la aplicación que proporciona información detallada sobre sismos en tiempo real. Mantente informado sobre los últimos sismos ocurridos en todo el mundo.")
 
 # Separadores
 st.markdown("---")
