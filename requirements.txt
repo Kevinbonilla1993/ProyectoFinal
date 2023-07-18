@@ -7,3 +7,4 @@ Pillow
 folium
 streamlit-folium
 tk
+display
