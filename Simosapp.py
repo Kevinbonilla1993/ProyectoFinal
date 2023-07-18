@@ -40,11 +40,28 @@ st.markdown('Esta aplicación proporciona información detallada sobre sismos.')
 # Separadores
 st.markdown("---")
 
-st.subheader("Mapa de los últimos sismos")
-m = folium.Map(location=[df['Latitude'].mean(), df['Longitude'].mean()], zoom_start=3)
-for i in range(len(df)):
-    folium.Marker([df['Latitude'][i], df['Longitude'][i]], popup=f"Magnitud: {df['Magnitude'][i]} | Profundidad: {df['Depth'][i]} km").add_to(m)
-return m
+# Función para mostrar el mapa con los últimos sismos
+def show_map():
+    st.subheader("Mapa de los últimos sismos")
+    m = folium.Map(location=[df['Latitude'].mean(), df['Longitude'].mean()], zoom_start=3)
+    for i in range(len(df)):
+        folium.Marker([df['Latitude'][i], df['Longitude'][i]], popup=f"Magnitud: {df['Magnitude'][i]} | Profundidad: {df['Depth'][i]} km").add_to(m)
+    return m
+
+# Función para mostrar los detalles del último sismo
+def show_details():
+    st.subheader("Detalles del último sismo")
+    st.write(f"Fecha: {df['Date'][0]}")
+    st.write(f"País: {df['Country'][0]}")
+    st.write(f"Magnitud: {df['Magnitude'][0]}")
+    st.write(f"Profundidad: {df['Depth'][0]} km")
+# Mostrar el mapa y los detalles
+col1, col2 = st.beta_columns(2)
+with col1:
+    show_map()
+
+with col2:
+    show_details()
 
 # Información del sismo
 st.subheader("Información del sismo")
