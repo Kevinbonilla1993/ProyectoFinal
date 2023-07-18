@@ -99,7 +99,7 @@ def ultimo_sismo():
     r = requests.get("https://www.jma.go.jp/bosai/quake/data/list.json")
     r = r.text
     r = json.loads(r)
-    r = r[0]
+    r = r[4]
     vars = r['cod'][1:]
     vars = vars.replace('+', ',')
     vars = vars.replace('-', ',')
@@ -128,7 +128,7 @@ def ultimo_sismo():
     df['localidad'] = df['place']
     df['country'] = 'ee.uu'
     df = df.drop(columns=['place'])
-    eeuu = df.head(1)
+    eeuu = df.head(5)
     # Formato correcto a la columna de fechas
     eeuu['time'] = pd.to_datetime(eeuu['time']).dt.strftime('%Y-%m-%d %H:%M:%S')
     #Redondear las columnas 
@@ -146,7 +146,7 @@ def ultimo_sismo():
     df_mexico['localidad'] = df_mexico['place']
     df_mexico['country'] = 'mexico'
     df_mexico = df_mexico.drop(columns=['place'])
-    mexico = df_mexico.head(1)
+    mexico = df_mexico.head(5)
     # Formato correcto a la columna de fechas
     mexico['time'] = pd.to_datetime(mexico['time']).dt.strftime('%Y-%m-%d %H:%M:%S')
     #Redondear las columnas 
