@@ -33,15 +33,6 @@ st.title("QuakeAlert")
 # Separadores
 st.markdown("---")
 
-# Ubicación en longitud y latitud
-st.subheader("Ubicación en coordenadas")
-st.write(f"Latitud: {latitude}")
-st.write(f"Longitud: {longitude}")
-
-# Ubicación en formato de texto
-st.subheader("Ubicación")
-st.markdown(f"<span style='color: orange;'>{country}</span>", unsafe_allow_html=True)
-
 # Mapa centrado en la ubicación del sismo
 m = folium.Map(location=[latitude, longitude], zoom_start=8)
 
@@ -52,6 +43,15 @@ marker.add_to(m)
 # Mostrar el mapa
 st.subheader("Mapa")
 folium_static(m)
+
+# Ubicación en longitud y latitud
+st.subheader("Ubicación en coordenadas")
+st.write(f"Latitud: {latitude}")
+st.write(f"Longitud: {longitude}")
+
+# Ubicación en formato de texto
+st.subheader("Ubicación")
+st.markdown(f"<span style='color: orange;'>{country}</span>", unsafe_allow_html=True)
 
 # Menú desplegable
 menu_options = ["Inicio", "Detalles Sismo"]
