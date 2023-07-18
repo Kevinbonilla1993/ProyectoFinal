@@ -13,13 +13,41 @@ mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
 # Configuración de la página
-st.set_page_config(page_title="App Quake", layout="wide")
+st.set_page_config(page_title="QuakeAlert", layout="wide")
+
+# Agregar CSS personalizado para el fondo de pantalla
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: orange;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Título de la app
-st.title("App Quake")
+st.title("QuakeAlert")
+
+# Separadores
+st.markdown("---")
+
+# Ubicación en longitud y latitud
+st.subheader("Ubicación en coordenadas")
+st.write(f"Latitud: {latitude}")
+st.write(f"Longitud: {longitude}")
+
+# Ubicación en formato de texto
+st.subheader("Ubicación")
+st.markdown(f"<span style='color: orange;'>{country}</span>", unsafe_allow_html=True)
+
+# Mostrar el mapa
+st.subheader("Mapa")
+folium_static(m)
 
 # Menú desplegable
-menu_options = ["Home", "Interacciones"]
+menu_options = ["Inicio", "Detalles Sismo"]
 choice = st.sidebar.selectbox("Menu", menu_options)
 
 # Mapa centrado en la ubicación del sismo
@@ -42,15 +70,5 @@ with col1:
 with col2:
     st.write(f"Magnitud: {mag}")
 
-# Ubicación en longitud y latitud
-st.subheader("Ubicación en coordenadas")
-st.write(f"Latitud: {latitude}")
-st.write(f"Longitud: {longitude}")
 
-# Ubicación en formato de texto
-st.subheader("Ubicación")
-st.markdown(f"<span style='color: orange;'>{sistype}</span>", unsafe_allow_html=True)
 
-# Mostrar el mapa
-st.subheader("Mapa")
-folium_static(m)
