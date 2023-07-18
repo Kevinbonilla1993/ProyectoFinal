@@ -33,7 +33,7 @@ st.markdown(
 st.title("QuakeAlert")
 
 # Agregar una descripción breve
-st.markdown('Esta aplicación proporciona información detallada sobre sismos.')
+st.markdown('Esta aplicación proporciona información detallada sobre sismos.**')
 
 # Separadores
 st.markdown("---")
