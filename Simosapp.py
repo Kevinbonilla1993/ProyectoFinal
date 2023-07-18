@@ -47,7 +47,7 @@ mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
 folium.CircleMarker(location=[latitude, longitude], radius=50, popup="Magnitud: " + str(mag),
                     fill_color='red', color='black', fill_opacity=0.7).add_to(mapa)
 
-for radius in range(50, int(magnitude) * 10, 10):
+for radius in range(50, int(mag) * 10, 10):
         circle.radius = radius
         folium_static(mapa)
         time.sleep(0.1)
