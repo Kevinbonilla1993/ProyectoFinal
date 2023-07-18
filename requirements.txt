@@ -3,10 +3,9 @@ gspread
 datetime
 pandas
 pydeck
-Pillow
 folium
 streamlit-folium
 tk
-display
 requests
 json
+pytz
