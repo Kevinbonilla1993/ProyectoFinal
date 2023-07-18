@@ -33,13 +33,13 @@ st.markdown(
 st.title("QuakeAlert")
 
 # Agregar una descripción breve
-st.markdown('Esta aplicación proporciona información detallada sobre sismos.**')
+st.markdown('**Esta aplicación proporciona información detallada sobre sismos.**')
 
 # Separadores
 st.markdown("---")
 
 # Crear un mapa centrado en la ubicación proporcionada
-mapa = folium.Map(location=[latitude, longitude], zoom_start=15)
+mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
 
 # Añadir un marcador en la ubicación
 folium.Marker(location=[latitude, longitude], popup="Mi ubicación").add_to(mapa)
