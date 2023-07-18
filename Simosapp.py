@@ -25,8 +25,8 @@ gif_path = "quake_alert.gif"
 st.image(gif_path, width=100)
 
 # Estilo personalizado para el título de la app
-st.title("🚀 QuakeAlert 🌎")
-st.markdown("Bienvenido a QuakeAlert, la aplicación que proporciona información detallada sobre sismos en tiempo real. Mantente informado sobre los últimos sismos ocurridos en todo el mundo.")
+# st.title("🚀 QuakeAlert 🌎")
+# st.markdown("Bienvenido a QuakeAlert, la aplicación que proporciona información detallada sobre sismos en tiempo real. Mantente informado sobre los últimos sismos ocurridos en todo el mundo.")
 
 # Separadores
 st.markdown("---")
@@ -87,14 +87,6 @@ if 'comments' not in st.session_state:
 if 'survey_responses' not in st.session_state:
     st.session_state.survey_responses = []
 
-# Agregar una sección para comentarios y retroalimentación
-st.subheader("Comentarios y Retroalimentación")
-comment = st.text_area("Deja tu comentario o retroalimentación aquí:")
-
-if st.button("Enviar comentario"):
-    # Guardar el comentario en la lista de comentarios
-    st.session_state.comments.append(comment)
-
 # Agregar una encuesta rápida sobre seguridad
 st.subheader("Encuesta de Seguridad")
 question1 = st.radio("¿Tienes un plan de evacuación en caso de sismo?", ("Sí", "No"))
@@ -108,11 +100,6 @@ if st.button("Enviar encuesta"):
         "Pregunta 2": question2,
         "Pregunta 3": question3
     })
-
-# Mostrar los comentarios y respuestas de la encuesta guardados
-st.subheader("Comentarios y Retroalimentación Guardados")
-for comment in st.session_state.comments:
-    st.write("- ", comment)
 
 st.subheader("Respuestas de Encuesta Guardadas")
 for response in st.session_state.survey_responses:
