@@ -4,6 +4,7 @@ import folium
 from datetime import datetime
 import pytz
 import pydeck as pdk
+import time
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
@@ -49,6 +50,11 @@ st.pydeck_chart(mapa)
 folium.CircleMarker(location=[latitude, longitude], radius=50, popup="Magnitud: " + str(mag),
                     fill_color='red', color='black', fill_opacity=0.7).add_to(mapa)
 
+for radius in range(50, int(magnitude) * 10, 10):
+        circle.radius = radius
+        folium_static(mapa)
+        time.sleep(0.1)
+
 # Mostrar el mapa en Streamlit
 folium_static(mapa)
 
@@ -61,6 +67,14 @@ def show_details():
     st.write(f"🌍 **País:** {country}")
     st.write(f"📍 **Latitud:** {latitude}")
     st.write(f"📍 **Longitud:** {longitude}")
+
+    st.subheader("Tiempo desde el sismo")
+    timezone = pytz.timezone('America/Bogota')  # Cambia 'NombreDeTuZonaHoraria' por la zona horaria correspondiente
+    sismo_time = datetime.strptime(fecha, '%Y-%m-%d %H:%M:%S')
+    sismo_time = timezone.localize(sismo_time)
+    now = datetime.now(timezone)
+    time_diff = now - sismo_time
+    st.write(f"Ha pasado {time_diff.days} días, {time_diff.seconds // 3600} horas y {time_diff.seconds // 60} minutos desde el sismo.")
 
 # Función para mostrar detalles específicos con un diseño más creativo
 def show_details2():
@@ -75,7 +89,33 @@ def show_details2():
     
     st.write(f"📅 **Tipo de sismo:** {sistype}")
     st.write(f"⏰ **Fecha:** {fecha}")
-    
+
+      # Gráfico interactivo de profundidad
+    st.subheader("Gráfico de Profundidad")
+    depth_chart_data = pd.DataFrame({"Profundidad": [depth]})
+    depth_chart = pdk.Deck(
+        map_style='mapbox://styles/mapbox/light-v9',
+        initial_view_state=pdk.ViewState(
+            latitude=latitude,
+            longitude=longitude,
+            zoom=10,
+            pitch=50,
+        ),
+        layers=[
+            pdk.Layer(
+                'ColumnLayer',
+                data=depth_chart_data,
+                get_position='[0, 0]',
+                get_elevation='Profundidad * 100',  # Escala la profundidad para mejor visualización
+                elevation_scale=1000,
+                radius=20000,
+                get_fill_color='[255, 0, 0]',
+                auto_highlight=True,
+                pickable=True,
+            ),
+        ],
+    )
+    st.pydeck_chart(depth_chart)
 # Mostrar el mapa y los detalles
 col1, col2 = st.columns(2)
 with col1:
