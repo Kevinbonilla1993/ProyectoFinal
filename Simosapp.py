@@ -172,34 +172,16 @@ def ultimo_sismo():
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
 
 # Crear la disposición en 3 columnas
-col1, col2, col3 = st.columns([2, 2, 2])
+col1, col2, col3 = st.columns([2, 1, 2])
 
 # Columna 1: Mostrar el GIF
 gif_path = "quake_alert..gif"
 col1.image(gif_path,use_column_width=True)
 
 # Columna 2: Mostrar el nombre de la página y opciones de sismos
-col2.title("QuakeAlert")
-col2.subheader("¡Recibe alertas de sismos en tiempo real!")
+col3.title("QuakeAlert")
+col3.subheader("¡Recibe alertas de sismos en tiempo real!")
 
-# Columna 3: Mostrar el menú desplegable
-if 0 < mag <= 1:
-    col3.image("1.jpeg", width=250)
-elif 1 < mag <= 2:
-    col3.image("2.jpeg", width=250)
-elif 2 < mag <= 3:
-    col3.image("3.jpeg",  width=250)
-elif 3 < mag <= 4:
-    col3.image("4.jpeg",  width=250)
-elif 4 < mag <= 5:
-    col3.image("5.jpeg",  width=250)
-elif 5 < mag <= 6:
-    col3.image("6.jpeg", width=250)
-elif 6 < mag <= 7:
-    col3.image("7.jpeg", width=250)
-elif 7 < mag <= 8:
-    col3.image("8.jpeg", width=250)
-st.sidebar.title("Menú desplegable")
 
 # Opciones del menú desplegable
 paginas = ["Inicio", "Últimos sismos"]
