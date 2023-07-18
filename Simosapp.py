@@ -55,18 +55,14 @@ def show_details():
 # Mostrar el mapa y los detalles
 col1, col2 = st.columns(2)
 with col1:
-   # Crear el mapa de Folium
-    m = folium.Map(location=[latitude, longitude], zoom_start=3)
+   # Crear un mapa centrado en la ubicación proporcionada
+    mapa = folium.Map(location=[latitude, longitude], zoom_start=8)
     
-    # Agregar marcador al mapa
-    popup_content = f"Magnitud: {mag} | Profundidad: {depth} km"
-    folium.Marker([latitude, longitude], popup=popup_content).add_to(m)
+    # Añadir un marcador en la ubicación
+    folium.Marker(location=[latitude, longitude], popup="Mi ubicación").add_to(mapa)
     
-    # Obtener el HTML del mapa de Folium
-    html_map = m._repr_html_()
-    
-    # Mostrar el mapa en Streamlit utilizando st.markdown()
-    st.markdown(html_map, unsafe_allow_html=True)
+    # Mostrar el mapa en Streamlit
+    folium_static(mapa)
     
 with col2:
     show_details()
