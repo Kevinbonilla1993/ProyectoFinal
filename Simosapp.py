@@ -31,7 +31,7 @@ marker.add_to(m)
 
 # Dibujar la escala de Richter
 st.subheader("Escala de Richter")
-st.image("richter_scale.png")
+st.image("ritcher.jpg")
 
 # Información del sismo
 st.subheader("Información del sismo")
