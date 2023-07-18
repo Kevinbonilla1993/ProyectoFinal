@@ -164,7 +164,7 @@ def ultimo_sismo():
 
     # Mostrar la tabla con los detalles de los últimos 10 sismos
     st.subheader("Últimos 10 sismos")
-    st.table(df_combinado[["time", "mag", "depth", "longitude", "magnitude"]].reset_index(drop=True))
+    st.table(df_combinado[["time", "mag", "depth", "longitude", "latitude"]].reset_index(drop=True))
 
 # Configuracion de la pagina
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
