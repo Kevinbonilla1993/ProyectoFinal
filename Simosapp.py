@@ -12,8 +12,9 @@ depth = result['val'][3]
 mag = result['val'][4]
 sistype = result['val'][5]
 fecha = result['val'][6]
+
 # Configuración de la página
-st.set_page_config(page_title="QuakeAlert", layout="wide")
+st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
 
 # Agregar CSS personalizado para el área de la aplicación
 st.markdown(
@@ -33,19 +34,17 @@ st.markdown(
 # Título de la app
 st.title("QuakeAlert")
 
+# Agregar una descripción breve
+st.markdown('Esta aplicación proporciona información detallada sobre sismos.')
+
 # Separadores
 st.markdown("---")
 
-# Mapa centrado en la ubicación del sismo
-m = folium.Map(location=[latitude, longitude], zoom_start=8)
-
-# Marcador en la ubicación del sismo
-marker = folium.Marker([latitude, longitude], popup=sistype)
-marker.add_to(m)
-
-# Mostrar el mapa
-st.subheader("Mapa")
-folium_static(m)
+st.subheader("Mapa de los últimos sismos")
+    m = folium.Map(location=[df['Latitude'].mean(), df['Longitude'].mean()], zoom_start=3)
+    for i in range(len(df)):
+        folium.Marker([df['Latitude'][i], df['Longitude'][i]], popup=f"Magnitud: {df['Magnitude'][i]} | Profundidad: {df['Depth'][i]} km").add_to(m)
+    return m
 
 # Información del sismo
 st.subheader("Información del sismo")
