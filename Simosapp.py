@@ -43,15 +43,14 @@ st.markdown("---")
 # Crear un mapa centrado en la ubicación proporcionada
 mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
 
-# Mostrar el mapa en Streamlit
-st.pydeck_chart(mapa)
-
 # Añadir círculo en la ubicación del sismo con estilo personalizado
 folium.CircleMarker(location=[latitude, longitude], radius=50, popup="Magnitud: " + str(mag),
                     fill_color='red', color='black', fill_opacity=0.7).add_to(mapa)
 
-# Mostrar el mapa en Streamlit
-folium_static(mapa)
+for radius in range(50, int(magnitude) * 10, 10):
+        circle.radius = radius
+        folium_static(mapa)
+        time.sleep(0.1)
 
 st.subheader("Detalles del sismo")
 
@@ -87,7 +86,7 @@ def show_details2():
 
       # Gráfico interactivo de profundidad
     st.subheader("Gráfico de Profundidad")
-    depth_chart_data = pd.DataFrame({"Profundidad": [depth]})
+    depth_chart_data = pd.DataFrame({"result": [depth]})
     depth_chart = pdk.Deck(
         map_style='mapbox://styles/mapbox/light-v9',
         initial_view_state=pdk.ViewState(
