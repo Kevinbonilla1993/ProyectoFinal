@@ -6,3 +6,5 @@ pydeck
 folium
 requests
 pytz
+matplotlib
+seaborn
