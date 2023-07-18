@@ -40,13 +40,6 @@ st.markdown('Esta aplicación proporciona información detallada sobre sismos.')
 # Separadores
 st.markdown("---")
 
-# Función para mostrar el mapa con los últimos sismos
-def show_map():
-    st.subheader("Mapa de los últimos sismos")
-    m = folium.Map(location=[latitude, longitude], zoom_start=3)  # Corregir el uso de location
-    folium.Marker([latitude, longitude], popup=f"Magnitud: {mag} | Profundidad: {depth} km").add_to(m)
-    return m
-
 
 # Función para mostrar los detalles del último sismo
 def show_details():
@@ -62,7 +55,15 @@ def show_details():
 # Mostrar el mapa y los detalles
 col1, col2 = st.columns(2)
 with col1:
-    st.write(show_map())
+    # Crear el mapa de Folium
+    m = folium.Map(location=[latitude, longitude], zoom_start=3)
+    
+    # Agregar marcador al mapa
+    popup_content = f"Magnitud: {mag} | Profundidad: {depth} km"
+    folium.Marker([latitude, longitude], popup=popup_content).add_to(m)
+    
+    # Mostrar el mapa en Streamlit usando folium_static
+    st.write(folium_static(m))
 
 with col2:
     show_details()
