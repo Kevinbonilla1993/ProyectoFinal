@@ -68,14 +68,22 @@ def mostrar_inicio():
         
     with col2:
         show_details2()
-    
+
+    # Mostrar imágenes según el tipo de sismo
+    if sistype == "leve":
+        st.image("leve.jpeg", use_column_width=True)
+    elif sistype == "medio":
+        st.image("medio.jpeg", use_column_width=True)
+    elif sistype == "alto":
+        st.image("alto.jpeg", use_column_width=True)
+
     # Inicializar la sesión
     if 'comments' not in st.session_state:
         st.session_state.comments = []
     
     if 'survey_responses' not in st.session_state:
         st.session_state.survey_responses = []
-    
+
     # Agregar una encuesta rápida sobre seguridad
     st.subheader("Encuesta de Seguridad")
     question1 = st.radio("¿Tienes un plan de evacuación en caso de sismo?", ("Sí", "No"))
@@ -213,7 +221,6 @@ def ultimo_sismo():
     st.pyplot(plt)
 
 
-
 # Configuracion de la pagina
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
 
@@ -242,13 +249,6 @@ elif pagina_seleccionada == "Últimos sismos":
 st.markdown("---")
 
 
-# Mostrar imágenes según el tipo de sismo
-if sistype == "leve":
-    st.image("leve.jpeg", use_column_width=True)
-elif sistype == "medio":
-    st.image("medio.jpeg", use_column_width=True)
-elif sistype == "alto":
-    st.image("alto.jpeg", use_column_width=True)
 
 
 
