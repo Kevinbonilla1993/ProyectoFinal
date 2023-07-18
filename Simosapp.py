@@ -35,7 +35,7 @@ st.markdown("---")
 mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
 
 # Agregar un marcador para mostrar la ubicación exacta del sismo
-folium.Marker([latitude, longitude], popup=f"Sismo {mag}M en {country} - {fecha}").add_to(mapa)
+folium.Marker([latitude, longitude]).add_to(mapa)
 
 # Mostrar el mapa interactivo
 mapa.save("mapa_sismo.html")
