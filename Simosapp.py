@@ -17,35 +17,7 @@ mag = float(result['val'][4])
 sistype = result['val'][5]
 fecha = result['val'][6]
 
-# Configuración de la página
-st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
-
-# Crear la disposición en 3 columnas
-col1, col2, col3 = st.columns([1, 2, 1])
-
-# Columna 1: Mostrar el GIF
-gif_path = "quake_alert..gif"
-col1.image(gif_path,use_column_width=True)
-
-# Columna 2: Mostrar el nombre de la página y opciones de sismos
-col2.subheader("QuakeAlert")
-
-# Columna 3: Mostrar el menú desplegable
-st.sidebar.title("Menú desplegable")
-
-# Opciones del menú desplegable
-paginas = ["Inicio", "Últimos sismos"]
-pagina_seleccionada = st.sidebar.radio("Selecciona una opción:", paginas)
-
-# Contenido de la página seleccionada
-if pagina_seleccionada == "Inicio":
-    mostrar_inicio()
-#elif pagina_seleccionada == "Últimos sismos":
- #   continue
-
-# Separadores
-st.markdown("---")
-
+# funciones
 def mostrar_inicio():
     # Crear el mapa
     mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
@@ -120,6 +92,36 @@ def mostrar_inicio():
     st.subheader("Respuestas de Encuesta Guardadas")
     for response in st.session_state.survey_responses:
         st.write(response)
+
+
+# Configuración de la página
+st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
+
+# Crear la disposición en 3 columnas
+col1, col2, col3 = st.columns([1, 2, 1])
+
+# Columna 1: Mostrar el GIF
+gif_path = "quake_alert..gif"
+col1.image(gif_path,use_column_width=True)
+
+# Columna 2: Mostrar el nombre de la página y opciones de sismos
+col2.subheader("QuakeAlert")
+
+# Columna 3: Mostrar el menú desplegable
+st.sidebar.title("Menú desplegable")
+
+# Opciones del menú desplegable
+paginas = ["Inicio", "Últimos sismos"]
+pagina_seleccionada = st.sidebar.radio("Selecciona una opción:", paginas)
+
+# Contenido de la página seleccionada
+if pagina_seleccionada == "Inicio":
+    mostrar_inicio()
+#elif pagina_seleccionada == "Últimos sismos":
+ #   continue
+
+# Separadores
+st.markdown("---")
 
 
 
