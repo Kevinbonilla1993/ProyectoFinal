@@ -9,9 +9,9 @@ import pydeck as pdk
 result = st.experimental_get_query_params()
 
 country = result['val'][0]
-latitude = result['val'][1]
-longitude = result['val'][2]
-depth = result['val'][3]
+latitude = float(result['val'][1])
+longitude = float(result['val'][2])
+depth = float(result['val'][3])
 mag = float(result['val'][4])
 sistype = result['val'][5]
 fecha = result['val'][6]
