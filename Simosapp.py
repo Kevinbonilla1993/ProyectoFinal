@@ -89,6 +89,21 @@ with col1:
 with col2:
     show_details2()
 
+# Inicializar la sesión
+if 'comments' not in st.session_state:
+    st.session_state.comments = []
+
+if 'survey_responses' not in st.session_state:
+    st.session_state.survey_responses = []
+
+# Agregar una sección para comentarios y retroalimentación
+st.subheader("Comentarios y Retroalimentación")
+comment = st.text_area("Deja tu comentario o retroalimentación aquí:")
+
+if st.button("Enviar comentario"):
+    # Guardar el comentario en la lista de comentarios
+    st.session_state.comments.append(comment)
+
 # Agregar una encuesta rápida sobre seguridad
 st.subheader("Encuesta de Seguridad")
 question1 = st.radio("¿Tienes un plan de evacuación en caso de sismo?", ("Sí", "No"))
@@ -96,20 +111,21 @@ question2 = st.radio("¿Tienes un kit de emergencia preparado?", ("Sí", "No"))
 question3 = st.radio("¿Conoces los lugares seguros en tu hogar?", ("Sí", "No"))
 
 if st.button("Enviar encuesta"):
-    # Aquí puedes agregar el código para guardar las respuestas de la encuesta en una base de datos o en un archivo.
+    # Guardar las respuestas de la encuesta en la lista de respuestas de encuestas
+    st.session_state.survey_responses.append({
+        "Pregunta 1": question1,
+        "Pregunta 2": question2,
+        "Pregunta 3": question3
+    })
 
-# Agregar opción para compartir ubicación a través de enlaces
-st.subheader("Compartir ubicación del sismo")
-current_url = st.experimental_get_query_params()
-share_url = st.text_input("Copia y comparte este enlace:", current_url)
+# Mostrar los comentarios y respuestas de la encuesta guardados
+st.subheader("Comentarios y Retroalimentación Guardados")
+for comment in st.session_state.comments:
+    st.write("- ", comment)
 
-# Agregar botones para compartir en redes sociales (requiere una implementación más avanzada)
-if st.button("Compartir en Facebook"):
-    # Agregar código para compartir en Facebook
-    
-if st.button("Compartir en Twitter"):
-    # Agregar código para compartir en Twitter
-    
+st.subheader("Respuestas de Encuesta Guardadas")
+for response in st.session_state.survey_responses:
+    st.write(response)
 
 # Dibujar la escala de Richter
 st.subheader("Escala de Richter")
