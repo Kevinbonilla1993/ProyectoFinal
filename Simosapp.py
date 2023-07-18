@@ -166,7 +166,53 @@ def ultimo_sismo():
 
     # Mostrar la tabla con los detalles de los últimos 10 sismos
     st.subheader("Últimos 10 sismos")
-    st.table(df_combinado[["time", "country", "longitude", "latitude", "mag", "depth"]].reset_index(drop=True))
+    # Establecer un índice personalizado para la tabla para resaltar el sismo más reciente
+    df_combinado.index = range(1, len(df_combinado)+1)
+    st.dataframe(df_combinado[["time", "country", "longitude", "latitude", "mag", "depth"]].reset_index(drop=True))
+
+    import matplotlib.pyplot as plt
+
+    # Crear un gráfico de línea de la magnitud del sismo a lo largo del tiempo
+    plt.figure(figsize=(10, 6))
+    plt.plot(df_combinado['time'], df_combinado['mag'], marker='o', linestyle='-', color='b')
+    plt.xlabel('Fecha y Hora')
+    plt.ylabel('Magnitud del Sismo')
+    plt.title('Magnitud del Sismo a lo largo del tiempo')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    
+    # Mostrar el gráfico en Streamlit
+    st.subheader("Gráfico de línea de la magnitud del sismo a lo largo del tiempo")
+    st.pyplot(plt)
+
+    import seaborn as sns
+
+    # Crear un gráfico de barras de la cantidad de sismos por país
+    plt.figure(figsize=(10, 6))
+    sns.countplot(data=df_combinado, x='country', palette='viridis')
+    plt.xlabel('País')
+    plt.ylabel('Cantidad de Sismos')
+    plt.title('Cantidad de Sismos por País')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    
+    # Mostrar el gráfico en Streamlit
+    st.subheader("Gráfico de barras de la cantidad de sismos por país")
+    st.pyplot(plt)
+
+    # Crear un gráfico de dispersión de la profundidad vs. la magnitud del sismo
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(data=df_combinado, x='depth', y='mag', hue='country', palette='Set1')
+    plt.xlabel('Profundidad (km)')
+    plt.ylabel('Magnitud del Sismo')
+    plt.title('Profundidad vs. Magnitud del Sismo')
+    plt.tight_layout()
+    
+    # Mostrar el gráfico en Streamlit
+    st.subheader("Gráfico de dispersión de la profundidad vs. la magnitud del sismo")
+    st.pyplot(plt)
+
+
 
 # Configuracion de la pagina
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
@@ -178,10 +224,9 @@ col1, col2, col3 = st.columns([1, 1, 2])
 gif_path = "quake_alert..gif"
 col1.image(gif_path,use_column_width=True)
 
-# Columna 2: Mostrar el nombre de la página y opciones de sismos
+# Columna 3: Mostrar el nombre de la página y opciones de sismos
 col3.title("QuakeAlert")
 col3.subheader("¡Recibe alertas de sismos en tiempo real!")
-
 
 # Opciones del menú desplegable
 paginas = ["Inicio", "Últimos sismos"]
@@ -196,6 +241,14 @@ elif pagina_seleccionada == "Últimos sismos":
 # Separadores
 st.markdown("---")
 
+
+# Mostrar imágenes según el tipo de sismo
+if sistype == "leve":
+    st.image("leve.jpeg", use_column_width=True)
+elif sistype == "medio":
+    st.image("medio.jpeg", use_column_width=True)
+elif sistype == "alto":
+    st.image("alto.jpeg", use_column_width=True)
 
 
 
