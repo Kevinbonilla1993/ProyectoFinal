@@ -93,8 +93,79 @@ def mostrar_inicio():
     for response in st.session_state.survey_responses:
         st.write(response)
 
+def ultimo_sismo():
+    # Ultimo dato de japon
+    r = requests.get("https://www.jma.go.jp/bosai/quake/data/list.json")
+    r = r.text
+    r = json.loads(r)
+    r = r[0]
+    vars = r['cod'][1:]
+    vars = vars.replace('+', ',')
+    vars = vars.replace('-', ',')
+    vars = vars.replace('/', '')
+    vars = vars.split(',')
+    lat = vars[0]
+    lon = vars[1]
+    dept = vars[2]
+    quake = {'time': r['at'], 'latitude': lat, 'longitude': lon, 'depth': dept, 'mag': r['mag'], 'localidad': r['en_anm'], 'country': 'japon'}
+    Japon = pd.DataFrame([quake])
+    #convertimos a float la columna "depth"
+    Japon['depth'] = Japon['depth'].astype('float64')
+    #dividimos por mil para llevar la unidad de medida a KM para mantener la misma en todos los datasets
+    Japon['depth'] = (Japon['depth'] / 1000)
+    # Formato correcto a la columna de fechas
+    Japon['time'] = pd.to_datetime(Japon['time']).dt.strftime('%Y-%m-%d %H:%M:%S')
+    #Redondear las columnas 
+    Japon[['latitude','longitude','depth','mag']]=Japon[['latitude','longitude','depth','mag']].round(1)
 
-# Configuración de la página
+    # Ultimo dato de estados unidos
+    df = pd.read_csv('https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&orderby=time')
+    df = df.dropna(subset=['place'])
+    df = df[['time', 'latitude', 'longitude', 'depth', 'mag', 'place']]
+    estados = ['Alaska', 'California', 'Washington', 'Oregon']
+    df = df[df['place'].str.contains('|'.join(estados), case=False)]
+    df['localidad'] = df['place']
+    df['country'] = 'ee.uu'
+    df = df.drop(columns=['place'])
+    eeuu = df.head(1)
+    # Formato correcto a la columna de fechas
+    eeuu['time'] = pd.to_datetime(eeuu['time']).dt.strftime('%Y-%m-%d %H:%M:%S')
+    #Redondear las columnas 
+    eeuu[['latitude','longitude','depth','mag']]=eeuu[['latitude','longitude','depth','mag']].round(1)
+    
+
+    # Ultimo dato de mexico
+    df = pd.read_csv('https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&orderby=time')
+    # Eliminar filas con valores nulos en la columna 'place'
+    df = df.dropna(subset=['place'])
+    # Filtrar los registros de México
+    df_mexico = df[df['place'].str.contains('Mexico')]
+    # Seleccionar las columnas deseadas
+    df_mexico = df_mexico[['time', 'latitude', 'longitude', 'depth', 'mag', 'place']]
+    df_mexico['localidad'] = df_mexico['place']
+    df_mexico['country'] = 'mexico'
+    df_mexico = df_mexico.drop(columns=['place'])
+    mexico = df_mexico.head(1)
+    # Formato correcto a la columna de fechas
+    mexico['time'] = pd.to_datetime(mexico['time']).dt.strftime('%Y-%m-%d %H:%M:%S')
+    #Redondear las columnas 
+    mexico[['latitude','longitude','depth','mag']]=mexico[['latitude','longitude','depth','mag']].round(1)
+
+    # Concatenar los tres conjuntos de datos
+    df_combinado = pd.concat([Japon, eeuu, mexico], ignore_index=True)
+    
+    # Mostrar el mapa con los últimos 10 sismos
+    st.subheader("Mapa de los últimos 10 sismos")
+    mapa = folium.Map(location=[latitude, longitude], zoom_start=6)
+    for idx, sismo in df_combinado.iterrows():
+        folium.Marker(location=[sismo['latitude'], sismo['longitude']], popup=f"Magnitud: {sismo['mag']}\nFecha: {sismo['time']}").add_to(mapa)
+    folium_static(mapa)
+
+    # Mostrar la tabla con los detalles de los últimos 10 sismos
+    st.subheader("Últimos 10 sismos")
+    st.table(df_combinado[["time", "mag", "depth", "place"]].reset_index(drop=True))
+
+# Configuracion de la pagina
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
 
 # Crear la disposición en 3 columnas
