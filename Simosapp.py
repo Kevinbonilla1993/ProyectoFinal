@@ -31,9 +31,14 @@ st.image(gif_path,use_column_width=True)
 # Separadores
 st.markdown("---")
 
-# Mostrar el mapa interactivo con el epicentro del sismo y el marcador
-st.subheader("Epicentro del Sismo")
-st.map((latitude, longitude), zoom=8, markers=[(latitude, longitude)])
+# Crear un mapa centrado en las coordenadas del sismo
+mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
+
+# Agregar un marcador para mostrar la ubicación exacta del sismo
+folium.Marker([latitude, longitude], popup=f"Sismo {mag}M en {country} - {fecha}").add_to(mapa)
+
+# Mostrar el mapa interactivo
+mapa.save("mapa_sismo.html")
 
 st.subheader("Detalles del sismo")
 
