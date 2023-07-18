@@ -40,8 +40,8 @@ pagina_seleccionada = st.sidebar.radio("Selecciona una opción:", paginas)
 # Contenido de la página seleccionada
 if pagina_seleccionada == "Inicio":
     mostrar_inicio()
-elif pagina_seleccionada == "Últimos sismos":
-    continue
+#elif pagina_seleccionada == "Últimos sismos":
+ #   continue
 
 # Estilo personalizado para el título de la app
 # st.title("🚀 QuakeAlert 🌎")
