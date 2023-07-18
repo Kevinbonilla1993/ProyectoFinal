@@ -20,19 +20,6 @@ fecha = result['val'][6]
 # Configuración de la página
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
 
-# Agregar CSS personalizado para el área de la aplicación
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background-color: orange;
-        max-width: 800px; /* Ajusta el ancho máximo según tus preferencias */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Carga del GIF desde el directorio local
 gif_path = "quake_alert.gif"
 st.image(gif_path, width=100)
