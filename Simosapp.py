@@ -21,7 +21,7 @@ fecha = result['val'][6]
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
 
 # Crear la disposición en 3 columnas
-col1, col2, col3 = st.beta_columns([1, 2, 1])
+col1, col2, col3 = st.columns([1, 2, 1])
 
 # Columna 1: Mostrar el GIF
 gif_path = "quake_alert.gif"
