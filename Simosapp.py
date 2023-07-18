@@ -35,7 +35,7 @@ st.image("ritcher.jpg")
 
 # Información del sismo
 st.subheader("Información del sismo")
-col1, col2 = st.beta_columns(2)
+col1, col2 = st.columns(2)
 with col1:
     st.write(f"Fecha: {fecha}")
     st.write(f"Profundidad: {depth} km")
