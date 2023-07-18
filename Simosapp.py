@@ -31,14 +31,28 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Título de la app
-st.title("QuakeAlert")
-
-# Agregar una descripción breve
-st.markdown('**Esta aplicación proporciona información detallada sobre sismos.**')
+# Estilo personalizado para el título de la app
+st.title("🚀 QuakeAlert 🌎")
+st.write("Bienvenido a QuakeAlert, la aplicación que proporciona información detallada sobre sismos en tiempo real. Mantente informado sobre los últimos sismos ocurridos en todo el mundo.")
 
 # Separadores
 st.markdown("---")
+
+# Agregar una descripción más colorida y atractiva
+st.markdown('''
+### 📡 Información en tiempo real 🌍
+
+**QuakeAlert** utiliza datos en tiempo real para mostrar detalles precisos de los sismos que han ocurrido recientemente. Puedes visualizarlos en un mapa interactivo y obtener información sobre su magnitud, profundidad y ubicación.
+
+### 🗺️ Explora y descubre 🌐
+
+Descubre sismos de diferentes magnitudes y profundidades en todo el mundo. Utiliza los filtros interactivos para personalizar tus búsquedas y obtener información específica de acuerdo con tus intereses.
+
+### 🚨 Sismos significativos ⚠️
+
+¡Recibe notificaciones sobre sismos significativos! QuakeAlert te alertará en caso de que haya un sismo con una magnitud mayor a 7.0 para que estés preparado.
+
+---''')
 
 # Crear un mapa centrado en la ubicación proporcionada
 mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
@@ -55,19 +69,27 @@ folium_static(mapa)
 
 st.subheader("Detalles del sismo")
 
-# Función para mostrar los detalles del último sismo
+# Función para mostrar detalles con un diseño más creativo
 def show_details():
-   
-    st.write(f"País: {country}")
-    st.write(f"Latitud: {latitude}")
-    st.write(f"Longitud: {longitude}")
+    st.subheader("Detalles Generales")
+    st.markdown("---")
+    st.write(f"🌍 **País:** {country}")
+    st.write(f"📍 **Latitud:** {latitude}")
+    st.write(f"📍 **Longitud:** {longitude}")
 
+# Función para mostrar detalles específicos con un diseño más creativo
 def show_details2():
-    st.write(f"Magnitud: {mag}")
-    st.write(f"Profundidad: {depth} km")
-    st.write(f"Tipo de sismo: {sistype}")
-    st.write(f"Fecha: {fecha}")
-
+    st.subheader("Detalles Específicos")
+    st.markdown("---")
+    
+    st.write(f"🌋 **Magnitud:** {mag}")
+    st.progress(int(mag * 10))  # Agregar una barra de progreso para visualizar la magnitud
+    
+    st.write(f"🌊 **Profundidad:** {depth} km")
+    st.progress(int(depth))  # Agregar una barra de progreso para visualizar la profundidad
+    
+    st.write(f"📅 **Tipo de sismo:** {sistype}")
+    st.write(f"⏰ **Fecha:** {fecha}")
     
 # Mostrar el mapa y los detalles
 col1, col2 = st.columns(2)
