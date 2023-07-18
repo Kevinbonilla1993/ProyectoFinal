@@ -49,9 +49,11 @@ folium.Marker(location=[latitude, longitude], popup="Mi ubicación").add_to(mapa
 # Mostrar el mapa en Streamlit
 folium_static(mapa)
 
+st.subheader("Detalles del sismo")
+
 # Función para mostrar los detalles del último sismo
 def show_details():
-    st.subheader("Detalles del sismo")
+   
     st.write(f"País: {country}")
     st.write(f"Latitud: {latitude}")
     st.write(f"Longitud: {longitude}")
