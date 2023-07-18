@@ -182,17 +182,16 @@ col1.image(gif_path,use_column_width=True)
 col2.subheader("QuakeAlert")
 
 # Columna 3: Mostrar el menú desplegable
-col3.subheader("Imagen según magnitud del sismo")
 if 0 < mag <= 1:
-    col3.image("1.jpeg", use_column_width=True, width=150)
+    col3.image("1.jpeg", width=150)
 elif 1 < mag <= 2:
-    col3.image("2.jpeg", use_column_width=True, width=150)
+    col3.image("2.jpeg", width=150)
 elif 2 < mag <= 3:
-    col3.image("3.jpeg", use_column_width=True, width=150)
+    col3.image("3.jpeg",  width=150)
 elif 3 < mag <= 4:
-    col3.image("4.jpeg", use_column_width=True, width=150)
+    col3.image("4.jpeg",  width=150)
 elif 4 < mag <= 5:
-    col3.image("5.jpeg", use_column_width=True, width=150)
+    col3.image("5.jpeg",  width=150)
 elif 5 < mag <= 6:
     col3.image("6.jpeg", use_column_width=True, width=150)
 elif 6 < mag <= 7:
