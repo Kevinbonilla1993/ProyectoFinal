@@ -40,8 +40,8 @@ st.markdown("Bienvenido a QuakeAlert, la aplicación que proporciona informació
 st.markdown("---")
 
 # Crear un mapa 3D centrado en la ubicación del sismo
-view_state = pdk.ViewState(latitude=sismo['latitude'], longitude=sismo['longitude'], zoom=10, pitch=50, bearing=-30)
-layer = pdk.Layer('ScatterplotLayer', data=[sismo], get_position='[longitude, latitude]', get_color='[200, 30, 0, 160]',
+view_state = pdk.ViewState(latitude=latitude, longitude=longitude, zoom=10, pitch=50, bearing=-30)
+layer = pdk.Layer('ScatterplotLayer', data=[result], get_position='[longitude, latitude]', get_color='[200, 30, 0, 160]',
                   get_radius='mag * 1000', pickable=True)
 tooltip = {"html": "<b>Magnitud:</b> {mag}<br/><b>Profundidad:</b> {depth} km", "style": {"backgroundColor": "white", "color": "black", "fontSize": "12px"}}
 mapa = pdk.Deck(map_style='mapbox://styles/mapbox/light-v9', initial_view_state=view_state, layers=[layer], tooltip=tooltip)
