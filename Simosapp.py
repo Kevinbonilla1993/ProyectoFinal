@@ -3,6 +3,7 @@ import streamlit as st
 import folium
 from datetime import datetime
 import pytz
+import pydeck as pdk
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
@@ -33,26 +34,17 @@ st.markdown(
 
 # Estilo personalizado para el título de la app
 st.title("🚀 QuakeAlert 🌎")
-st.write("Bienvenido a QuakeAlert, la aplicación que proporciona información detallada sobre sismos en tiempo real. Mantente informado sobre los últimos sismos ocurridos en todo el mundo.")
+st.markdown("Bienvenido a QuakeAlert, la aplicación que proporciona información detallada sobre sismos en tiempo real. Mantente informado sobre los últimos sismos ocurridos en todo el mundo.")
 
 # Separadores
 st.markdown("---")
 
-# Agregar una descripción más colorida y atractiva
-st.markdown('''
-### 📡 Información en tiempo real 🌍
-
-**QuakeAlert** utiliza datos en tiempo real para mostrar detalles precisos de los sismos que han ocurrido recientemente. Puedes visualizarlos en un mapa interactivo y obtener información sobre su magnitud, profundidad y ubicación.
-
-### 🗺️ Explora y descubre 🌐
-
-Descubre sismos de diferentes magnitudes y profundidades en todo el mundo. Utiliza los filtros interactivos para personalizar tus búsquedas y obtener información específica de acuerdo con tus intereses.
-
-### 🚨 Sismos significativos ⚠️
-
-¡Recibe notificaciones sobre sismos significativos! QuakeAlert te alertará en caso de que haya un sismo con una magnitud mayor a 7.0 para que estés preparado.
-
----''')
+# Crear un mapa 3D centrado en la ubicación del sismo
+view_state = pdk.ViewState(latitude=sismo['latitude'], longitude=sismo['longitude'], zoom=10, pitch=50, bearing=-30)
+layer = pdk.Layer('ScatterplotLayer', data=[sismo], get_position='[longitude, latitude]', get_color='[200, 30, 0, 160]',
+                  get_radius='mag * 1000', pickable=True)
+tooltip = {"html": "<b>Magnitud:</b> {mag}<br/><b>Profundidad:</b> {depth} km", "style": {"backgroundColor": "white", "color": "black", "fontSize": "12px"}}
+mapa = pdk.Deck(map_style='mapbox://styles/mapbox/light-v9', initial_view_state=view_state, layers=[layer], tooltip=tooltip)
 
 # Crear un mapa centrado en la ubicación proporcionada
 mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
