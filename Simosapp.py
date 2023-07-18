@@ -23,8 +23,6 @@ st.markdown(
     .stApp {
         background-color: orange;
         max-width: 800px; /* Ajusta el ancho máximo según tus preferencias */
-        padding: 20px; /* Añade un relleno para que el contenido no quede pegado al borde */
-        margin: 0 auto; /* Centra el contenedor horizontalmente */
     }
     </style>
     """,
