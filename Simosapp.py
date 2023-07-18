@@ -49,7 +49,7 @@ folium_static(m)
 
 # Información del sismo
 st.subheader("Información del sismo")
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 with col1:
     st.write(f"Fecha: {fecha}")
     st.write(f"Profundidad: {depth} km")
