@@ -81,32 +81,6 @@ def show_details2():
     st.write(f"📅 **Tipo de sismo:** {sistype}")
     st.write(f"⏰ **Fecha:** {fecha}")
 
-      # Gráfico interactivo de profundidad
-    st.subheader("Gráfico de Profundidad")
-    depth_chart_data = [depth] 
-    depth_chart = pdk.Deck(
-        map_style='mapbox://styles/mapbox/light-v9',
-        initial_view_state=pdk.ViewState(
-            latitude=latitude,
-            longitude=longitude,
-            zoom=10,
-            pitch=50,
-        ),
-        layers=[
-            pdk.Layer(
-                'ColumnLayer',
-                data=depth_chart_data,
-                get_position='[0, 0]',
-                get_elevation='Profundidad * 100',  # Escala la profundidad para mejor visualización
-                elevation_scale=1000,
-                radius=20000,
-                get_fill_color='[255, 0, 0]',
-                auto_highlight=True,
-                pickable=True,
-            ),
-        ],
-    )
-    st.pydeck_chart(depth_chart)
 # Mostrar el mapa y los detalles
 col1, col2 = st.columns(2)
 with col1:
@@ -114,6 +88,28 @@ with col1:
     
 with col2:
     show_details2()
+
+# Agregar una encuesta rápida sobre seguridad
+st.subheader("Encuesta de Seguridad")
+question1 = st.radio("¿Tienes un plan de evacuación en caso de sismo?", ("Sí", "No"))
+question2 = st.radio("¿Tienes un kit de emergencia preparado?", ("Sí", "No"))
+question3 = st.radio("¿Conoces los lugares seguros en tu hogar?", ("Sí", "No"))
+
+if st.button("Enviar encuesta"):
+    # Aquí puedes agregar el código para guardar las respuestas de la encuesta en una base de datos o en un archivo.
+
+# Agregar opción para compartir ubicación a través de enlaces
+st.subheader("Compartir ubicación del sismo")
+current_url = st.experimental_get_query_params()
+share_url = st.text_input("Copia y comparte este enlace:", current_url)
+
+# Agregar botones para compartir en redes sociales (requiere una implementación más avanzada)
+if st.button("Compartir en Facebook"):
+    # Agregar código para compartir en Facebook
+    
+if st.button("Compartir en Twitter"):
+    # Agregar código para compartir en Twitter
+    
 
 # Dibujar la escala de Richter
 st.subheader("Escala de Richter")
