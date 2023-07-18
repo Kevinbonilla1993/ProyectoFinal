@@ -50,11 +50,6 @@ st.pydeck_chart(mapa)
 folium.CircleMarker(location=[latitude, longitude], radius=50, popup="Magnitud: " + str(mag),
                     fill_color='red', color='black', fill_opacity=0.7).add_to(mapa)
 
-for radius in range(50, int(magnitude) * 10, 10):
-        circle.radius = radius
-        folium_static(mapa)
-        time.sleep(0.1)
-
 # Mostrar el mapa en Streamlit
 folium_static(mapa)
 
