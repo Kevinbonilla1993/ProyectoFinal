@@ -31,6 +31,9 @@ st.image(gif_path,use_column_width=True)
 # Separadores
 st.markdown("---")
 
+# Coordenadas del sismo (usando las variables latitude y longitude)
+sismo_location = [latitude, longitude]
+
 # Crear el mapa
 mapa = folium.Map(location=sismo_location, zoom_start=10)
 
