@@ -33,11 +33,8 @@ st.markdown("---")
 
 # Crear un mapa centrado en la ubicación proporcionada
 mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
-
 folium.Marker([latitude, longitude], popup="Epicentro del Sismo").add_to(folium_map)
-st.write(folium_map._repr_html_(), unsafe_allow_html=True)
-
-folium_static(mapa)
+folium_static(folium_map)
 
 st.subheader("Detalles del sismo")
 
