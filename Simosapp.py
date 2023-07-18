@@ -20,6 +20,21 @@ fecha = result['val'][6]
 # Configuración de la página
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
 
+# Crear la disposición en 3 columnas
+col1, col2, col3 = st.beta_columns([1, 2, 1])
+
+# Columna 1: Mostrar el GIF
+gif_path = "quake_alert.gif"
+col1.image(gif_path,use_column_width=True)
+
+# Columna 2: Mostrar el nombre de la página y opciones de sismos
+col2.title("Nombre de la página")
+seleccion = col2.radio("Elige una opción:", ("Inicio", "Últimos sismos"))
+
+# Columna 3: Mostrar el menú desplegable
+col3.title("Menú desplegable")
+opciones = col3.selectbox("Selecciona una opción:", ["Opción 1", "Opción 2", "Opción 3"])
+
 # Carga del GIF desde el directorio local
 gif_path = "quake_alert.gif"
 st.image(gif_path,use_column_width=True)
