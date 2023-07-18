@@ -1,22 +1,56 @@
+from streamlit_folium import folium_static
 import streamlit as st
 import folium
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
 
-country = result[0]
-latitude = float(result[1])  # Convertir a número
-longitude = float(result[2])  # Convertir a número
-depth = result[3]
-mag = result[4]
-sistype = result[5]
-date = result[6]
+country = result['val'][0]
+latitude = result['val'][1]
+longitude = result['val'][2]
+depth = result['val'][3]
+mag = result['val'][4]
+sistype = result['val'][5]
+fecha = result['val'][6]
+# Configuración de la página
+st.set_page_config(page_title="App Quake", layout="wide")
 
-# Crear el mapa con las coordenadas dadas
-mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
+# Título de la app
+st.title("App Quake")
 
-# Agregar marcador para la ubicación dada
-folium.Marker([latitude, longitude], popup=f'{country}, {date}').add_to(mapa)
+# Menú desplegable
+menu_options = ["Home", "Interacciones"]
+choice = st.sidebar.selectbox("Menu", menu_options)
 
-# Mostrar el mapa en Streamlit
-st.write(mapa)
+# Mapa centrado en la ubicación del sismo
+m = folium.Map(location=[latitude, longitude], zoom_start=8)
+
+# Marcador en la ubicación del sismo
+marker = folium.Marker([latitude, longitude], popup=sistype)
+marker.add_to(m)
+
+# Dibujar la escala de Richter
+st.subheader("Escala de Richter")
+st.image("richter_scale.png")
+
+# Información del sismo
+st.subheader("Información del sismo")
+col1, col2 = st.beta_columns(2)
+with col1:
+    st.write(f"Fecha: {fecha}")
+    st.write(f"Profundidad: {depth} km")
+with col2:
+    st.write(f"Magnitud: {mag}")
+
+# Ubicación en longitud y latitud
+st.subheader("Ubicación en coordenadas")
+st.write(f"Latitud: {latitude}")
+st.write(f"Longitud: {longitude}")
+
+# Ubicación en formato de texto
+st.subheader("Ubicación")
+st.markdown(f"<span style='color: orange;'>{sistype}</span>", unsafe_allow_html=True)
+
+# Mostrar el mapa
+st.subheader("Mapa")
+folium_static(m)
