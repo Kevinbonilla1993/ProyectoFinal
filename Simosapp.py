@@ -3,7 +3,7 @@ import streamlit as st
 import folium
 from datetime import datetime
 import time
-import request
+import requests
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
