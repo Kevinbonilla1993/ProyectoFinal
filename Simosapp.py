@@ -31,17 +31,15 @@ st.image(gif_path,use_column_width=True)
 # Separadores
 st.markdown("---")
 
-# Coordenadas del sismo (usando las variables latitude y longitude)
-sismo_location = [latitude, longitude]
-
 # Crear el mapa
-mapa = folium.Map(location=sismo_location, zoom_start=10)
+mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
 
 # Agregar un marcador para mostrar la ubicación del sismo
-folium.Marker(location=sismo_location, popup=f'Sismo en {country}', icon=folium.Icon(color='red')).add_to(mapa)
+folium.Marker(location=[latitude, longitude], popup=f"Sismo en {country}\nMagnitud: {mag}\nFecha: {fecha}").add_to(mapa)
 
-# Mostrar el mapa interactivo en un archivo HTML
-mapa.save('mapa_sismo_interactivo.html')
+# Mostrar el mapa interactivo
+folium_static(mapa)
+
 st.subheader("Detalles del sismo")
 
 # Función para mostrar detalles con un diseño más creativo
