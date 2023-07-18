@@ -7,5 +7,4 @@ folium
 streamlit-folium
 tk
 requests
-json
 pytz
