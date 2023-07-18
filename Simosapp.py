@@ -15,12 +15,15 @@ fecha = result['val'][6]
 # Configuración de la página
 st.set_page_config(page_title="QuakeAlert", layout="wide")
 
-# Agregar CSS personalizado para el fondo de pantalla
+# Agregar CSS personalizado para el área de la aplicación
 st.markdown(
     """
     <style>
-    body {
+    .stApp {
         background-color: orange;
+        max-width: 800px; /* Ajusta el ancho máximo según tus preferencias */
+        padding: 20px; /* Añade un relleno para que el contenido no quede pegado al borde */
+        margin: 0 auto; /* Centra el contenedor horizontalmente */
     }
     </style>
     """,
@@ -44,24 +47,6 @@ marker.add_to(m)
 st.subheader("Mapa")
 folium_static(m)
 
-# Ubicación en longitud y latitud
-st.subheader("Ubicación en coordenadas")
-st.write(f"Latitud: {latitude}")
-st.write(f"Longitud: {longitude}")
-
-# Ubicación en formato de texto
-st.subheader("Ubicación")
-st.markdown(f"<span style='color: orange;'>{country}</span>", unsafe_allow_html=True)
-
-# Menú desplegable
-menu_options = ["Inicio", "Detalles Sismo"]
-choice = st.sidebar.selectbox("Menu", menu_options)
-
-
-# Dibujar la escala de Richter
-st.subheader("Escala de Richter")
-st.image("ritcher.jpg")
-
 # Información del sismo
 st.subheader("Información del sismo")
 col1, col2 = st.columns(2)
@@ -70,6 +55,19 @@ with col1:
     st.write(f"Profundidad: {depth} km")
 with col2:
     st.write(f"Magnitud: {mag}")
+with col3:
+    st.write(f"Latitud: {latitude}")
+st.write(f"Longitud: {longitude}")
+# Ubicación en formato de texto
+st.subheader("Ubicación")
+st.markdown(f"<span style='color: orange;'>{country}</span>", unsafe_allow_html=True)
+
+
+# Dibujar la escala de Richter
+st.subheader("Escala de Richter")
+st.image("ritcher.jpg")
+
+
 
 
 
