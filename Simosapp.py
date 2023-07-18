@@ -62,8 +62,11 @@ with col1:
     popup_content = f"Magnitud: {mag} | Profundidad: {depth} km"
     folium.Marker([latitude, longitude], popup=popup_content).add_to(m)
     
-    # Mostrar el mapa en Streamlit utilizando st.pydeck_chart()
-    st.pydeck_chart(folium_static(m))
+    # Obtener el HTML del mapa de Folium
+    html_map = folium_static(m, width=700, height=500)
+    
+    # Mostrar el mapa en Streamlit utilizando st.components.v1.html
+    st.components.v1.html(html_map)
 
 with col2:
     show_details()
