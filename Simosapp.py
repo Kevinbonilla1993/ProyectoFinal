@@ -12,15 +12,14 @@ mag = result['val'][4]
 sistype = result['val'][5]
 date = result['val'][6]
 
-# Crea un mapa centrado en las coordenadas proporcionadas
-mapa = folium.Map(location=[latitude, longitude], zoom_start=15)
+# Crear el mapa con las coordenadas dadas
+mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
 
-# Agrega un marcador en las coordenadas proporcionadas
-folium.Marker([latitude, longitude], popup=country).add_to(mapa)
+# Agregar marcador para la ubicación dada
+folium.Marker([latitude, longitude], popup=f'{country}, {date}').add_to(mapa)
 
-# Guarda el mapa en un archivo HTML
-mapa.save("mi_mapa.html")
-
+# Mostrar el mapa en Streamlit
+st.write(mapa)
 
 
 
