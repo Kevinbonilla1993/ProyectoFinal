@@ -189,7 +189,7 @@ pagina_seleccionada = st.sidebar.radio("Selecciona una opción:", paginas)
 if pagina_seleccionada == "Inicio":
     mostrar_inicio()
 #elif pagina_seleccionada == "Últimos sismos":
- #   continue
+    ultimo_sismo()
 
 # Separadores
 st.markdown("---")
