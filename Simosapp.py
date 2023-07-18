@@ -16,7 +16,7 @@ date = result['val'][6]
 mapa = folium.Map(location=[latitude, longitude], zoom_start=15)
 
 # Agrega un marcador en las coordenadas proporcionadas
-folium.Marker([latitude, longitude], popup="country").add_to(mapa)
+folium.Marker([latitude, longitude], popup=country).add_to(mapa)
 
 # Guarda el mapa en un archivo HTML
 mapa.save("mi_mapa.html")
