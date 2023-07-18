@@ -1,6 +1,5 @@
 from streamlit_folium import folium_static
 import streamlit as st
-from IPython.display import display
 import folium
 
 # Obtener parámetros de la URL
@@ -57,17 +56,14 @@ def show_details():
 col1, col2 = st.columns(2)
 with col1:
 
-    # Crear un mapa centrado en la ubicación proporcionada
+  # Crear un mapa centrado en la ubicación proporcionada
     mapa = folium.Map(location=[latitude, longitude], zoom_start=15)
     
     # Añadir un marcador en la ubicación
     folium.Marker(location=[latitude, longitude], popup="Mi ubicación").add_to(mapa)
     
-    # Calcular el tamaño de la pantalla para mostrar el mapa en aproximadamente la mitad
-    width = "50%"  # Puedes ajustar este valor según tus necesidades
-    
-    # Mostrar el mapa utilizando IPython.display
-    display(mapa, width=width)
+    # Mostrar el mapa utilizando Streamlit
+    st.write(mapa._repr_html_(), unsafe_allow_html=True)
     
 with col2:
     show_details()
