@@ -47,7 +47,7 @@ mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
 folium.Marker(location=[latitude, longitude], popup="Mi ubicación").add_to(mapa)
 
 # Añadir círculo en la ubicación del sismo con estilo personalizado
-folium.CircleMarker(location=[latitude, longitude], radius=10, popup="Magnitud: " + str(mag),
+folium.CircleMarker(location=[latitude, longitude], radius=50, popup="Magnitud: " + str(mag),
                     fill_color='red', color='black', fill_opacity=0.7).add_to(mapa)
 
 # Mostrar el mapa en Streamlit
