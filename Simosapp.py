@@ -81,13 +81,15 @@ def mostrar_inicio():
     question1 = st.radio("¿Tienes un plan de evacuación en caso de sismo?", ("Sí", "No"))
     question2 = st.radio("¿Tienes un kit de emergencia preparado?", ("Sí", "No"))
     question3 = st.radio("¿Conoces los lugares seguros en tu hogar?", ("Sí", "No"))
-    
+    question4 = st.slider("¿En una escala del 1 al 10, qué tan fuerte percibiste el sismo?", 1, 10)
+                          
     if st.button("Enviar encuesta"):
         # Guardar las respuestas de la encuesta en la lista de respuestas de encuestas
         st.session_state.survey_responses.append({
             "Pregunta 1": question1,
             "Pregunta 2": question2,
-            "Pregunta 3": question3
+            "Pregunta 3": question3,
+            "Pregunta 4": question4
         })
     
     st.subheader("Respuestas de Encuesta Guardadas")
