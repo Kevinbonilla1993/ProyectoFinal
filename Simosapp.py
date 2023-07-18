@@ -60,14 +60,13 @@ def show_details():
 # Mostrar el mapa y los detalles
 col1, col2 = st.columns(2)
 with col1:
-
+    show_details()
+    
+with col2:
     st.write(f"Magnitud: {mag}")
     st.write(f"Profundidad: {depth} km")
     st.write(f"Tipo de sismo: {sistype}")
     st.write(f"Fecha: {fecha}")
-    
-with col2:
-    show_details()
 
 # Información del sismo
 st.subheader("Información del sismo")
