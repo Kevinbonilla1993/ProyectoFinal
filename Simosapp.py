@@ -5,10 +5,10 @@ import folium
 result = st.experimental_get_query_params()
 
 country = result['val'][0]
-latitude = float(result['val'][1])
-longitude = float(result['val'][2])
+latitude = result['val'][1]
+longitude = result['val'][2]
 depth = result['val'][3]
-mag = float(result['val'][4])
+mag = result['val'][4]
 sistype = result['val'][5]
 date = result['val'][6]
 
