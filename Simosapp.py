@@ -177,7 +177,11 @@ def ultimo_sismo():
     # Establecer un índice personalizado para la tabla para resaltar el sismo más reciente
     df_combinado.index = range(1, len(df_combinado)+1)
     st.dataframe(df_combinado[["time", "country", "longitude", "latitude", "mag", "depth"]].reset_index(drop=True))
-
+    # Convertir la columna de magnitud a valores numéricos
+    df_combinado['mag'] = df_combinado['mag'].astype(float)
+    df_combinado['latitude'] = df_combinado['mag'].astype(float)
+    df_combinado['longitude'] = df_combinado['mag'].astype(float)
+    df_combinado['depth'] = df_combinado['mag'].astype(float)
     import matplotlib.pyplot as plt
 
     # Crear un gráfico de línea de la magnitud del sismo a lo largo del tiempo
