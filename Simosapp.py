@@ -40,6 +40,14 @@ st.markdown('Esta aplicación proporciona información detallada sobre sismos.')
 # Separadores
 st.markdown("---")
 
+ # Crear un mapa centrado en la ubicación proporcionada
+mapa = folium.Map(location=[latitude, longitude], zoom_start=15)
+
+# Añadir un marcador en la ubicación
+folium.Marker(location=[latitude, longitude], popup="Mi ubicación").add_to(mapa)
+
+# Mostrar el mapa en Streamlit
+st.write(mapa)
 
 # Función para mostrar los detalles del último sismo
 def show_details():
@@ -47,23 +55,16 @@ def show_details():
     st.write(f"País: {country}")
     st.write(f"Latitud: {latitude}")
     st.write(f"Longitud: {longitude}")
-    st.write(f"Magnitud: {mag}")
-    st.write(f"Profundidad: {depth} km")
-    st.write(f"Tipo de sismo: {sistype}")
-    st.write(f"Fecha: {fecha}")
+
     
 # Mostrar el mapa y los detalles
 col1, col2 = st.columns(2)
 with col1:
 
-  # Crear un mapa centrado en la ubicación proporcionada
-    mapa = folium.Map(location=[latitude, longitude], zoom_start=15)
-    
-    # Añadir un marcador en la ubicación
-    folium.Marker(location=[latitude, longitude], popup="Mi ubicación").add_to(mapa)
-    
-    # Mostrar el mapa utilizando Streamlit
-    st.write(mapa._repr_html_(), unsafe_allow_html=True)
+    st.write(f"Magnitud: {mag}")
+    st.write(f"Profundidad: {depth} km")
+    st.write(f"Tipo de sismo: {sistype}")
+    st.write(f"Fecha: {fecha}")
     
 with col2:
     show_details()
