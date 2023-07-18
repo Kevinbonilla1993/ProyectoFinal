@@ -180,8 +180,7 @@ col1.image(gif_path,use_column_width=True)
 
 # Columna 2: Mostrar el nombre de la página y opciones de sismos
 col2.title("QuakeAlert")
-col2.write("¡Recibe alertas de sismos en tiempo real!")
-col2.subheader("Opciones de sismos:")
+col2.subheader("¡Recibe alertas de sismos en tiempo real!")
 
 # Columna 3: Mostrar el menú desplegable
 if 0 < mag <= 1:
@@ -201,9 +200,6 @@ elif 6 < mag <= 7:
 elif 7 < mag <= 8:
     col3.image("8.jpeg", width=250)
 st.sidebar.title("Menú desplegable")
-
-# Barra lateral con título más interesante
-st.sidebar.title("Configuración y Opciones")
 
 # Opciones del menú desplegable
 paginas = ["Inicio", "Últimos sismos"]
