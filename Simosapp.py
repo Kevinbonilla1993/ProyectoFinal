@@ -12,7 +12,7 @@ country = result['val'][0]
 latitude = result['val'][1]
 longitude = result['val'][2]
 depth = result['val'][3]
-mag = result['val'][4]
+mag = float(result['val'][4])
 sistype = result['val'][5]
 fecha = result['val'][6]
 
@@ -48,6 +48,9 @@ mapa = pdk.Deck(map_style='mapbox://styles/mapbox/light-v9', initial_view_state=
 
 # Crear un mapa centrado en la ubicación proporcionada
 mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
+
+# Mostrar el mapa en Streamlit
+st.pydeck_chart(mapa)
 
 # Añadir un marcador en la ubicación
 folium.Marker(location=[latitude, longitude], popup="Mi ubicación").add_to(mapa)
