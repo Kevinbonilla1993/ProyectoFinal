@@ -40,14 +40,14 @@ st.markdown('Esta aplicación proporciona información detallada sobre sismos.')
 # Separadores
 st.markdown("---")
 
- # Crear un mapa centrado en la ubicación proporcionada
+# Crear un mapa centrado en la ubicación proporcionada
 mapa = folium.Map(location=[latitude, longitude], zoom_start=15)
 
 # Añadir un marcador en la ubicación
 folium.Marker(location=[latitude, longitude], popup="Mi ubicación").add_to(mapa)
 
 # Mostrar el mapa en Streamlit
-st.write(mapa)
+folium_static(mapa)
 
 # Función para mostrar los detalles del último sismo
 def show_details():
