@@ -172,7 +172,7 @@ def ultimo_sismo():
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
 
 # Crear la disposición en 3 columnas
-col1, col2, col3 = st.columns([2, 2, 1])
+col1, col2, col3 = st.columns([2, 2, 2])
 
 # Columna 1: Mostrar el GIF
 gif_path = "quake_alert..gif"
