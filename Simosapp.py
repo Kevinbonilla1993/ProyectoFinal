@@ -35,7 +35,7 @@ st.markdown(
 
 # Carga del GIF desde el directorio local
 gif_path = "quake_alert.gif"
-st.image(gif_path, use_column_width=True)
+st.image(gif_path, use_column_width=True, width=300)
 
 # Estilo personalizado para el título de la app
 st.title("🚀 QuakeAlert 🌎")
