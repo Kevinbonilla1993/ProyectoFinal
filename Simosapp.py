@@ -56,7 +56,7 @@ def show_details():
     st.write(f"Magnitud: {df['Magnitude'][0]}")
     st.write(f"Profundidad: {df['Depth'][0]} km")
 # Mostrar el mapa y los detalles
-col1, col2 = st.beta_columns(2)
+col1, col2 = st.columns(2)
 with col1:
     show_map()
 
