@@ -32,6 +32,9 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+# Carga del video desde el directorio local
+video_path = "gif.mp4"
+st.video(video_path)
 
 # Estilo personalizado para el título de la app
 st.title("🚀 QuakeAlert 🌎")
