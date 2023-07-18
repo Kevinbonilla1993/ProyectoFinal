@@ -83,7 +83,7 @@ def show_details2():
 
       # Gráfico interactivo de profundidad
     st.subheader("Gráfico de Profundidad")
-    depth_chart_data = pd.DataFrame(depth)
+    depth_chart_data = [depth] 
     depth_chart = pdk.Deck(
         map_style='mapbox://styles/mapbox/light-v9',
         initial_view_state=pdk.ViewState(
