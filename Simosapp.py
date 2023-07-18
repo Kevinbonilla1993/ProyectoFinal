@@ -56,6 +56,12 @@ def show_details():
     st.write(f"Latitud: {latitude}")
     st.write(f"Longitud: {longitude}")
 
+def show_details2():
+    st.write(f"Magnitud: {mag}")
+    st.write(f"Profundidad: {depth} km")
+    st.write(f"Tipo de sismo: {sistype}")
+    st.write(f"Fecha: {fecha}")
+
     
 # Mostrar el mapa y los detalles
 col1, col2 = st.columns(2)
@@ -63,27 +69,7 @@ with col1:
     show_details()
     
 with col2:
-    st.write(f"Magnitud: {mag}")
-    st.write(f"Profundidad: {depth} km")
-    st.write(f"Tipo de sismo: {sistype}")
-    st.write(f"Fecha: {fecha}")
-
-# Información del sismo
-st.subheader("Información del sismo")
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.write(f"Fecha: {fecha}")
-    
-with col2:
-    st.write(f"Magnitud: {mag}")
-    st.write(f"Profundidad: {depth} km")
-with col3:
-    st.write(f"Latitud: {latitude}")
-    st.write(f"Longitud: {longitude}")
-# Ubicación en formato de texto
-st.subheader("Ubicación")
-st.markdown(f"<span style='color: orange;'>{country}</span>", unsafe_allow_html=True)
-
+    show_details2()
 
 # Dibujar la escala de Richter
 st.subheader("Escala de Richter")
