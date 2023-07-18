@@ -4,6 +4,8 @@ import folium
 from datetime import datetime
 import time
 import requests
+import json 
+import pytz
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
