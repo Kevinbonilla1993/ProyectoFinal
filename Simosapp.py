@@ -52,12 +52,13 @@ st.subheader("Información del sismo")
 col1, col2, col3 = st.columns(3)
 with col1:
     st.write(f"Fecha: {fecha}")
-    st.write(f"Profundidad: {depth} km")
+    
 with col2:
     st.write(f"Magnitud: {mag}")
+    st.write(f"Profundidad: {depth} km")
 with col3:
     st.write(f"Latitud: {latitude}")
-st.write(f"Longitud: {longitude}")
+    st.write(f"Longitud: {longitude}")
 # Ubicación en formato de texto
 st.subheader("Ubicación")
 st.markdown(f"<span style='color: orange;'>{country}</span>", unsafe_allow_html=True)
