@@ -168,7 +168,7 @@ def ultimo_sismo():
     
     # Mostrar el mapa con los últimos 15 sismos
     st.subheader("Mapa de los últimos 15 sismos")
-    mapa = folium.Map(location=[latitude, longitude], zoom_start=15)
+    mapa = folium.Map(location=[latitude, longitude], zoom_start=2)
     for idx, sismo in df_combinado.iterrows():
         folium.Marker(location=[sismo['latitude'], sismo['longitude']], popup=f"Magnitud: {sismo['mag']}\nFecha: {sismo['time']}").add_to(mapa)
     folium_static(mapa)
