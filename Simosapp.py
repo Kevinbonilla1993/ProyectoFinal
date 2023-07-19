@@ -175,10 +175,7 @@ def ultimo_sismo():
 
    # Mostrar la tabla con los detalles de los últimos 10 sismos
     st.subheader("Últimos 15 sismos")
-
-   # Agregamos una nueva columna con el enlace del sismo
-    df_combinado['Enlace'] = df_combinado.apply(lambda row: f"https://alertasismos.streamlit.app/?val={row['País']}&val={row['Latitud']}&val={row['Longitud']}&val={row['Profundidad']}&val={row['Magnitud']}&val=sistype&val={row['Fecha y Hora']}", axis=1)
-    
+   
     # Establecer un índice personalizado para la tabla para resaltar el sismo más reciente
     df_combinado.index = range(1, len(df_combinado) + 1)
     
@@ -189,13 +186,12 @@ def ultimo_sismo():
         "Longitud": "Longitud",
         "Latitud": "Latitud",
         "Magnitud": "Magnitud",
-        "Profundidad": "Profundidad",
-        "Enlace": "Enlace"
+        "Profundidad": "Profundidad"
     })
     
     # Mostrar la tabla con los detalles de los últimos 10 sismos en español
     st.subheader("Últimos 15 sismos")
-    st.dataframe(df_combinado[["Fecha y Hora", "País", "Longitud", "Latitud", "Magnitud", "Profundidad", "Enlace"]].reset_index(drop=True))
+    st.dataframe(df_combinado[["Fecha y Hora", "País", "Longitud", "Latitud", "Magnitud", "Profundidad"]].reset_index(drop=True))
     
     # Convertir la columna de magnitud a valores numéricos
     df_combinado['Magnitud'] = df_combinado['Magnitud'].astype(float)
