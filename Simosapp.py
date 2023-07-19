@@ -166,15 +166,15 @@ def ultimo_sismo():
     # Concatenar los tres conjuntos de datos
     df_combinado = pd.concat([Japon, eeuu, mexico], ignore_index=True)
     
-    # Mostrar el mapa con los últimos 10 sismos
-    st.subheader("Mapa de los últimos 10 sismos")
-    mapa = folium.Map(location=[latitude, longitude], zoom_start=6)
+    # Mostrar el mapa con los últimos 15 sismos
+    st.subheader("Mapa de los últimos 15 sismos")
+    mapa = folium.Map(location=[latitude, longitude], zoom_start=15)
     for idx, sismo in df_combinado.iterrows():
         folium.Marker(location=[sismo['latitude'], sismo['longitude']], popup=f"Magnitud: {sismo['mag']}\nFecha: {sismo['time']}").add_to(mapa)
     folium_static(mapa)
 
    # Mostrar la tabla con los detalles de los últimos 10 sismos
-    st.subheader("Últimos 10 sismos")
+    st.subheader("Últimos 15 sismos")
     # Establecer un índice personalizado para la tabla para resaltar el sismo más reciente
     df_combinado.index = range(1, len(df_combinado)+1)
     
