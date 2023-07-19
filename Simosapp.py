@@ -225,7 +225,11 @@ col3.subheader("¡Recibe alertas de sismos en tiempo real!")
 
 # Opciones del menú desplegable
 paginas = ["Inicio", "Últimos sismos"]
-pagina_seleccionada = st.sidebar.radio("Selecciona una opción:", paginas)
+pagina_seleccionada = st.sidebar.radio("Selecciona una opción:", paginas, index=0, format_func=lambda x: f"<span style='font-size:20px'>{x}</span>", key="radio")
+
+# Opciones del menú desplegable
+# paginas = ["Inicio", "Últimos sismos"]
+# pagina_seleccionada = st.sidebar.radio("Selecciona una opción:", paginas)
 
 # Contenido de la página seleccionada
 if pagina_seleccionada == "Inicio":
