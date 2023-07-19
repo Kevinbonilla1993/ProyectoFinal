@@ -178,12 +178,12 @@ def ultimo_sismo():
     
     # Renombrar las columnas al español
     df_combinado = df_combinado.rename(columns={
-        "time": "Fecha y Hora",
-        "countre": "País",
-        "longitude": "Longitud",
-        "latitude": "Latitud",
-        "mag": "Magnitud",
-        "depth": "Profundidad"
+    "time": "Fecha y Hora",
+    "country": "País",
+    "longitude": "Longitud",
+    "latitude": "Latitud",
+    "mag": "Magnitud",
+    "depth": "Profundidad"
     })
     
     # Mostrar la tabla con los detalles de los últimos 15 sismos en español
