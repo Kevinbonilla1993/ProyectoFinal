@@ -18,6 +18,19 @@ mag = float(result['val'][4])
 sistype = result['val'][5]
 fecha = result['val'][6]
 
+# Agregar estilos CSS para centrar la aplicación en el navegador
+st.markdown(
+    f"""
+    <style>
+    .reportview-container {{
+        display: flex;
+        justify-content: center;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # funciones
 def mostrar_inicio():
     # Crear el mapa
