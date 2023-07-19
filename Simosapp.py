@@ -56,6 +56,18 @@ def mostrar_inicio():
         st.progress(int(mag * 10))  # Agregar una barra de progreso para visualizar la magnitud
         
         st.write(f"🌊 **Profundidad:** {depth} km")
+        # Profundidad mínima y máxima en tus datos
+        profundidad_minima = 0
+        profundidad_maxima = 300
+
+        # Calcular la profundidad relativa en el rango de 0 a 100
+        profundidad_relativa = (depth - profundidad_minima) / (profundidad_maxima - profundidad_minima) * 100
+
+        # Asegurarse de que la profundidad relativa esté dentro del rango de 0 a 100
+        profundidad_relativa = max(0, min(100, profundidad_relativa))
+
+        # Mostrar la barra de progreso con la profundidad relativa
+        st.progress(int(profundidad_relativa))
         st.progress(int(depth))  # Agregar una barra de progreso para visualizar la profundidad
         
         st.write(f"📅 **Tipo de sismo:** {sistype}")
