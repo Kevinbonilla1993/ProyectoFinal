@@ -109,7 +109,7 @@ def ultimo_sismo():
     r = requests.get("https://www.jma.go.jp/bosai/quake/data/list.json")
     r = r.text
     r = json.loads(r)
-    r = r[4]
+    r = r[:4]
     vars = r['cod'][1:]
     vars = vars.replace('+', ',')
     vars = vars.replace('-', ',')
