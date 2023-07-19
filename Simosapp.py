@@ -195,21 +195,21 @@ def ultimo_sismo():
     df_combinado['Latitud'] = df_combinado['Latitud'].astype(float)
     df_combinado['Longitud'] = df_combinado['Longitud'].astype(float)
     df_combinado['Profundidad'] = df_combinado['Profundidad'].astype(float)
-    import matplotlib.pyplot as plt
 
-    # Crear un gráfico de línea de la magnitud del sismo a lo largo del tiempo
-    plt.figure(figsize=(10, 6))
-    plt.plot(df_combinado['time'], df_combinado['mag'], marker='o', linestyle='-', color='b')
-    plt.xlabel('Fecha y Hora')
-    plt.ylabel('Magnitud del Sismo')
-    plt.title('Magnitud del Sismo a lo largo del tiempo')
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    
-    # Mostrar el gráfico en Streamlit
-    st.subheader("Gráfico de línea de la magnitud del sismo a lo largo del tiempo")
-    st.pyplot(plt)
+import matplotlib.pyplot as plt
 
+# Crear un gráfico de línea de la magnitud del sismo a lo largo del tiempo
+plt.figure(figsize=(10, 6))
+plt.plot(df_combinado['time'], df_combinado['mag'], marker='o', linestyle='-', color='b')
+plt.xlabel('Fecha y Hora')
+plt.ylabel('Magnitud del Sismo')
+plt.title('Magnitud del Sismo a lo largo del tiempo')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Mostrar el gráfico en Streamlit
+st.subheader("Gráfico de línea de la magnitud del sismo a lo largo del tiempo")
+st.pyplot(plt)
 
 # Configuracion de la pagina
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
