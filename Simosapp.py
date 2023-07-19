@@ -193,7 +193,7 @@ def ultimo_sismo():
     })
     
     # Mostrar la tabla con los detalles de los últimos 10 sismos en español
-    st.dataframe(df_combinado[["Fecha y Hora", "País", "Longitud", "Latitud", "Magnitud", "Profundidad"]].reset_index(drop=True))
+    st.dataframe(df_combinado[["Fecha y Hora", "País", "Longitud", "Latitud", "Magnitud", "Profundidad", "Enlace"]].reset_index(drop=True))
     
     # Convertir la columna de magnitud a valores numéricos
     df_combinado['Magnitud'] = df_combinado['Magnitud'].astype(float)
