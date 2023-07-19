@@ -105,29 +105,30 @@ def mostrar_inicio():
         st.write(response)
 
 def ultimo_sismo():
-    # Ultimo dato de japon
     r = requests.get("https://www.jma.go.jp/bosai/quake/data/list.json")
-    r = r.text
-    r = json.loads(r)
-    r = r[:4]
-    vars = r['cod'][1:]
-    vars = vars.replace('+', ',')
-    vars = vars.replace('-', ',')
-    vars = vars.replace('/', '')
-    vars = vars.split(',')
-    lat = vars[0]
-    lon = vars[1]
-    dept = vars[2]
-    quake = {'time': r['at'], 'latitude': lat, 'longitude': lon, 'depth': dept, 'mag': r['mag'], 'localidad': r['en_anm'], 'country': 'japon'}
-    Japon = pd.DataFrame([quake])
-    #convertimos a float la columna "depth"
+    data = json.loads(r.text)
+    first_5_quakes = data[:5]
+    
+    quake_list = []
+    
+    for r in first_5_quakes:
+        if 'cod' in r:
+            vars = r['cod'][1:]
+            vars = vars.replace('+', ',')
+            vars = vars.replace('-', ',')
+            vars = vars.replace('/', '')
+            vars = vars.split(',')
+            lat = vars[0]
+            lon = vars[1]
+            dept = vars[2]
+            quake = {'time': r['at'], 'latitude': lat, 'longitude': lon, 'depth': dept, 'mag': r['mag'], 'localidad': r['en_anm'], 'country': 'japon'}
+            quake_list.append(quake)
+    
+    Japon = pd.DataFrame(quake_list)
     Japon['depth'] = Japon['depth'].astype('float64')
-    #dividimos por mil para llevar la unidad de medida a KM para mantener la misma en todos los datasets
     Japon['depth'] = (Japon['depth'] / 1000)
-    # Formato correcto a la columna de fechas
     Japon['time'] = pd.to_datetime(Japon['time']).dt.strftime('%Y-%m-%d %H:%M:%S')
-    #Redondear las columnas 
-    Japon[['latitude','longitude','depth','mag']]=Japon[['latitude','longitude','depth','mag']].round(1)
+    Japon[['latitude', 'longitude', 'depth', 'mag']] = Japon[['latitude', 'longitude', 'depth', 'mag']].round(1)
 
     # Ultimo dato de estados unidos
     df = pd.read_csv('https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&orderby=time')
