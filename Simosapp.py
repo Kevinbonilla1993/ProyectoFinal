@@ -68,7 +68,6 @@ def mostrar_inicio():
 
         # Mostrar la barra de progreso con la profundidad relativa
         st.progress(int(profundidad_relativa))
-        st.progress(int(depth))  # Agregar una barra de progreso para visualizar la profundidad
         
         st.write(f"📅 **Tipo de sismo:** {sistype}")
         st.write(f"⏰ **Fecha:** {fecha}")
