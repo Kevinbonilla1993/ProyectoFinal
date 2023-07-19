@@ -200,7 +200,7 @@ def ultimo_sismo():
     
     plt.figure(figsize=(10, 6))
     plt.plot(df_combinado['País'] + ' - ' + df_combinado['Fecha y Hora'].astype(str), df_combinado['Magnitud'], marker='o', linestyle='-', color='b')
-    plt.xlabel('País - Fecha y Hora')
+    plt.xlabel('País')
     plt.ylabel('Magnitud del Sismo')
     plt.title('Magnitud del Sismo a lo largo del tiempo por país')
     plt.xticks(rotation=45)
