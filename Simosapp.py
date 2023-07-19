@@ -177,8 +177,7 @@ def ultimo_sismo():
     st.subheader("Últimos 15 sismos")
 
     # Agregamos una nueva columna con el enlace del sismo
-    df_combinado['Enlace'] = df_combinado.apply(lambda row: f"https://alertasismos.streamlit.app/?val={df_combinado['country']}&val={df_combinado['latitude']}&val={df_combinado['longitude']}&val={df_combinado['depth']}&val={df_combinado['mag']}&val={sistype}&val={df_combinado['time']}", axis=1)
-
+    df_combinado['Enlace'] = df_combinado.apply(lambda row: f"https://alertasismos.streamlit.app/?val={row['País']}&val={row['Latitud']}&val={row['Longitud']}&val={row['Profundidad']}&val={row['Magnitud']}&val={row['Etiquetas']}&val={row['Fecha y Hora']}", axis=1)
     # Establecer un índice personalizado para la tabla para resaltar el sismo más reciente
     df_combinado.index = range(1, len(df_combinado)+1)
     
