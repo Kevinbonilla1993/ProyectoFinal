@@ -217,19 +217,6 @@ def ultimo_sismo():
 # Configuracion de la pagina
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
 
-# Agregar estilos CSS para centrar la aplicación en el navegador
-st.markdown(
-    f"""
-    <style>
-    .reportview-container {{
-        display: flex;
-        justify-content: center;
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Crear la disposición en 3 columnas
 col1, col2, col3 = st.columns([1, 1, 2])
 
