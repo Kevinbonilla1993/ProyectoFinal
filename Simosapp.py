@@ -179,9 +179,10 @@ def ultimo_sismo():
     st.dataframe(df_combinado[["time", "country", "longitude", "latitude", "mag", "depth"]].reset_index(drop=True))
     # Convertir la columna de magnitud a valores numéricos
     df_combinado['mag'] = df_combinado['mag'].astype(float)
-    df_combinado['latitude'] = df_combinado['mag'].astype(float)
-    df_combinado['longitude'] = df_combinado['mag'].astype(float)
-    df_combinado['depth'] = df_combinado['mag'].astype(float)
+    df_combinado['latitude'] = df_combinado['latitude'].astype(float)
+    df_combinado['longitude'] = df_combinado['longitude'].astype(float)
+    df_combinado['depth'] = df_combinado['depth'].astype(float)
+    
     import matplotlib.pyplot as plt
 
     # Crear un gráfico de línea de la magnitud del sismo a lo largo del tiempo
@@ -195,33 +196,6 @@ def ultimo_sismo():
     
     # Mostrar el gráfico en Streamlit
     st.subheader("Gráfico de línea de la magnitud del sismo a lo largo del tiempo")
-    st.pyplot(plt)
-
-    import seaborn as sns
-
-    # Crear un gráfico de barras de la cantidad de sismos por país
-    plt.figure(figsize=(10, 6))
-    sns.countplot(data=df_combinado, x='country', palette='viridis')
-    plt.xlabel('País')
-    plt.ylabel('Cantidad de Sismos')
-    plt.title('Cantidad de Sismos por País')
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    
-    # Mostrar el gráfico en Streamlit
-    st.subheader("Gráfico de barras de la cantidad de sismos por país")
-    st.pyplot(plt)
-
-    # Crear un gráfico de dispersión de la profundidad vs. la magnitud del sismo
-    plt.figure(figsize=(10, 6))
-    sns.scatterplot(data=df_combinado, x='depth', y='mag', hue='country', palette='Set1')
-    plt.xlabel('Profundidad (km)')
-    plt.ylabel('Magnitud del Sismo')
-    plt.title('Profundidad vs. Magnitud del Sismo')
-    plt.tight_layout()
-    
-    # Mostrar el gráfico en Streamlit
-    st.subheader("Gráfico de dispersión de la profundidad vs. la magnitud del sismo")
     st.pyplot(plt)
 
 
