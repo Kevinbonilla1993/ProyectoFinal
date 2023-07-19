@@ -172,24 +172,21 @@ def ultimo_sismo():
     for idx, sismo in df_combinado.iterrows():
         folium.Marker(location=[sismo['latitude'], sismo['longitude']], popup=f"Magnitud: {sismo['mag']}\nFecha: {sismo['time']}").add_to(mapa)
     folium_static(mapa)
-
-   # Mostrar la tabla con los detalles de los últimos 10 sismos
-    st.subheader("Últimos 15 sismos")
    
     # Establecer un índice personalizado para la tabla para resaltar el sismo más reciente
     df_combinado.index = range(1, len(df_combinado) + 1)
     
     # Renombrar las columnas al español
     df_combinado = df_combinado.rename(columns={
-        "Fecha y Hora": "Fecha y Hora",
-        "País": "País",
-        "Longitud": "Longitud",
-        "Latitud": "Latitud",
-        "Magnitud": "Magnitud",
-        "Profundidad": "Profundidad"
+        "time": "Fecha y Hora",
+        "countre": "País",
+        "longitude": "Longitud",
+        "latitude": "Latitud",
+        "mag": "Magnitud",
+        "depth": "Profundidad"
     })
     
-    # Mostrar la tabla con los detalles de los últimos 10 sismos en español
+    # Mostrar la tabla con los detalles de los últimos 15 sismos en español
     st.subheader("Últimos 15 sismos")
     st.dataframe(df_combinado[["Fecha y Hora", "País", "Longitud", "Latitud", "Magnitud", "Profundidad"]].reset_index(drop=True))
     
