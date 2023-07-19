@@ -198,16 +198,15 @@ def ultimo_sismo():
 
     import matplotlib.pyplot as plt
     
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(9, 5))
     plt.plot(df_combinado['País'].astype(str), df_combinado['Magnitud'], marker='o', linestyle='-', color='b')
     plt.xlabel('País')
     plt.ylabel('Magnitud del Sismo')
-    plt.title('Magnitud del Sismo a lo largo del tiempo por país')
+    plt.title(''Magnitud de los últimos 15 sismos por país')
     plt.xticks(rotation=45)
     plt.tight_layout()
 
     # Mostrar el gráfico en Streamlit
-    st.subheader("Gráfico de línea de la magnitud del sismo a lo largo del tiempo")
     st.pyplot(plt)
 
 # Configuracion de la pagina
