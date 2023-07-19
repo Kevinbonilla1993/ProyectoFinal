@@ -21,7 +21,7 @@ fecha = result['val'][6]
 # funciones
 def mostrar_inicio():
     # Crear el mapa
-    mapa = folium.Map(location=[latitude, longitude], zoom_start=10)
+    mapa = folium.Map(location=[latitude, longitude], zoom_start=7)
     
     # Agregar un marcador para mostrar la ubicación del sismo
     folium.Marker(location=[latitude, longitude], popup=f"Sismo en {country}\nMagnitud: {mag}\nFecha: {fecha}").add_to(mapa)
