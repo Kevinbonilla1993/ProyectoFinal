@@ -91,7 +91,7 @@ def mostrar_inicio():
     st.title("Círculos como Botones en Streamlit")
 
     # Carga de la imagen que contiene los círculos
-    image = st.image("alto.jpeg", use_column_width=True)
+    image = "alto.jpeg"
 
     # Coordenadas de los círculos (cada círculo está definido por su posición x, y y radio r)
     circles = [(100, 200, 30), (300, 150, 50), (400, 300, 40)]
@@ -103,7 +103,7 @@ def mostrar_inicio():
     width, height = image.size
 
     # Obtener el tamaño de la imagen en el visor de Streamlit
-    image_width = st.beta_image(image, caption="Imagen con círculos", use_column_width=True).beta_get_query_params()['width']
+    image_width = st.image(image, caption="Imagen con círculos", use_column_width=True).beta_get_query_params()['width']
 
     # Calcular la escala para ajustar las coordenadas de los círculos al tamaño de la imagen en el visor
     scale = image_width / width
