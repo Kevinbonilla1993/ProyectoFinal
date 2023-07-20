@@ -97,7 +97,7 @@ def mostrar_inicio():
     circles = [(100, 200, 30), (300, 150, 50), (400, 300, 40)]
 
     # Mostrar la imagen
-    st.image(image, caption="Imagen con círculos", use_column_width=True)
+    image = st.image(image, caption="Imagen con círculos", use_column_width=True)
 
     # Obtener el tamaño original de la imagen
     width, height = image.size
