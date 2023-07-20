@@ -129,11 +129,13 @@ def ultimo_sismo():
             vars = vars.replace('-', ',')
             vars = vars.replace('/', '')
             vars = vars.split(',')
-            lat = vars[0]
-            lon = vars[1]
-            dept = vars[2]
-            quake = {'time': r['at'], 'latitude': lat, 'longitude': lon, 'depth': dept, 'mag': r['mag'], 'localidad': r['en_anm'], 'country': 'japon'}
-            quake_list.append(quake)
+
+            if len(vars) >= 3:
+                lat = vars[0]
+                lon = vars[1]
+                dept = vars[2]
+                quake = {'time': r['at'], 'latitude': lat, 'longitude': lon, 'depth': dept, 'mag': r['mag'], 'localidad': r['en_anm'], 'country': 'japon'}
+                quake_list.append(quake)
     
     Japon = pd.DataFrame(quake_list)
     Japon['depth'] = Japon['depth'].astype('float64')
