@@ -88,23 +88,40 @@ def mostrar_inicio():
     elif sistype == "alto":
         st.image("alto.jpeg", use_column_width=True)
     
-        st.title("Círculos como Botones en Streamlit")
+    st.title("Círculos como Botones en Streamlit")
 
-        # Coordenadas de los círculos (cada círculo está definido por su posición x, y y radio r)
-        circles = [(100, 200, 30), (300, 200, 30), (500, 200, 30), (100, 400, 30), (300, 400, 30), (500, 400, 30)]
-    
-        # Configurar el diseño en 3 columnas y 2 filas
-        cols = st.columns(3)
-        rows = 2
-    
-        for i, circle in enumerate(circles):
-            circle_x, circle_y, circle_radius = circle
-            # Si el botón del círculo es presionado, muestra una imagen ampliada o explicación
-            if cols[i % 3].button(f"Círculo {i+1}"):
-                # Aquí puedes cargar y mostrar la imagen ampliada o la explicación para el círculo
-                # Ejemplo:
-                st.image("alto.jpeg")
-                st.write("Explicación del contenido dentro del círculo")
+    # Carga de la imagen que contiene los círculos
+    image_path = "alto.jpeg"
+    image = Image.open(image_path)
+
+    # Coordenadas de los círculos (cada círculo está definido por su posición x, y y radio r)
+    circles = [(100, 200, 30), (300, 150, 50), (400, 300, 40)]
+
+    # Mostrar la imagen
+    st.image(image, caption="Imagen con círculos", use_column_width=True)
+
+    # Obtener el tamaño original de la imagen
+    width, height = image.size
+
+    # Obtener el tamaño de la imagen en el visor de Streamlit
+    image_width = st.image(image, caption="Imagen con círculos", use_column_width=True).beta_get_query_params()['width']
+
+    # Calcular la escala para ajustar las coordenadas de los círculos al tamaño de la imagen en el visor
+    scale = image_width / width
+
+    # Posicionar los botones en cada círculo
+    for i, circle in enumerate(circles):
+        circle_x, circle_y, circle_radius = circle
+        button_x = circle_x * scale
+        button_y = circle_y * scale
+        # Si el botón del círculo es presionado, muestra una imagen ampliada o explicación
+        if st.button("", key=f"boton_{i}", help="Círculo interactivo", 
+                    style=f"position:absolute;top:{button_y}px;left:{button_x}px;"):
+            # Aquí puedes cargar y mostrar la imagen ampliada o la explicación para el círculo
+            # Ejemplo:
+            st.image("alto.jpeg")
+            st.write(f"Explicación del contenido dentro del círculo en la posición (x={circle_x}, y={circle_y})")
+
 
     # Inicializar la sesión
     if 'comments' not in st.session_state:
