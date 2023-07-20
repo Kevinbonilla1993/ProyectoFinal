@@ -89,9 +89,15 @@ def mostrar_inicio():
         st.image("alto.jpeg", use_column_width=True)
     
         st.title("Círculos como Botones en Streamlit")
+
+        image_path = "alto.jpeg"
+        
+        # Cargar la imagen
+        image = Image.open(image_path)
         
         # Mostrar la imagen y obtener su tamaño original
-        image = st.image("alto.jpeg", use_column_width=True)
+        image = st.image(image, use_column_width=True)
+        
         width, height = image.original.size
         
         # Coordenadas de los círculos (cada círculo está definido por su posición x, y y radio r)
