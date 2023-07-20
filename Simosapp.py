@@ -87,6 +87,24 @@ def mostrar_inicio():
         st.image("medio.jpeg", use_column_width=True)
     elif sistype == "alto":
         st.image("alto.jpeg", use_column_width=True)
+    
+        st.title("Círculos como Botones en Streamlit")
+
+        # Coordenadas de los círculos (cada círculo está definido por su posición x, y y radio r)
+        circles = [(100, 200, 30), (300, 200, 30), (500, 200, 30), (100, 400, 30), (300, 400, 30), (500, 400, 30)]
+    
+        # Configurar el diseño en 3 columnas y 2 filas
+        cols = st.beta_columns(3)
+        rows = 2
+    
+        for i, circle in enumerate(circles):
+            circle_x, circle_y, circle_radius = circle
+            # Si el botón del círculo es presionado, muestra una imagen ampliada o explicación
+            if cols[i % 3].button(f"Círculo {i+1}"):
+                # Aquí puedes cargar y mostrar la imagen ampliada o la explicación para el círculo
+                # Ejemplo:
+                st.image("alto.jpeg")
+                st.write("Explicación del contenido dentro del círculo")
 
     # Inicializar la sesión
     if 'comments' not in st.session_state:
