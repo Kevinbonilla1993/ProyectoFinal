@@ -94,7 +94,7 @@ def mostrar_inicio():
         circles = [(100, 200, 30), (300, 200, 30), (500, 200, 30), (100, 400, 30), (300, 400, 30), (500, 400, 30)]
     
         # Configurar el diseño en 3 columnas y 2 filas
-        cols = st.beta(3)
+        cols = st.columns(3)
         rows = 2
     
         for i, circle in enumerate(circles):
