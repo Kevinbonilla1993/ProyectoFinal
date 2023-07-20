@@ -103,7 +103,7 @@ def mostrar_inicio():
     width, height = image.size
 
     # Obtener el tamaño de la imagen en el visor de Streamlit
-    image_width = st.image(image, caption="Imagen con círculos", use_column_width=True).beta_get_query_params()['width']
+    image_width = st.beta_image(image, caption="Imagen con círculos", use_column_width=True).beta_get_query_params()['width']
 
     # Calcular la escala para ajustar las coordenadas de los círculos al tamaño de la imagen en el visor
     scale = image_width / width
