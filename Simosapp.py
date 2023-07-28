@@ -1,3 +1,4 @@
+import streamlit_folium as st_folium
 import streamlit as st
 import folium
 from datetime import datetime
