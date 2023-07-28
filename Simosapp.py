@@ -6,7 +6,6 @@ import requests
 import json 
 import pytz
 import pandas as pd
-from streamlit_folium import st_folium
 
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
@@ -27,11 +26,9 @@ def mostrar_inicio():
     # Agregar un marcador para mostrar la ubicación del sismo
     folium.Marker(location=[latitude, longitude], popup=f"Sismo en {country}\nMagnitud: {mag}\nFecha: {fecha}").add_to(mapa)
     
-    # Mostrar el mapa interactivo
-    # folium_static(mapa)
+    # Mostrar el mapa interactivo utilizando folium_static
+    st.folium_static(mapa)
 
-    # Mostrar el mapa interactivo
-    st.pydeck_chart(mapa)
     
     st.subheader("Detalles del sismo")
     
