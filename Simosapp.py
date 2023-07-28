@@ -171,7 +171,7 @@ def ultimo_sismo():
     mapa = folium.Map(location=[latitude, longitude], zoom_start=1)
     for idx, sismo in df_combinado.iterrows():
         folium.Marker(location=[sismo['latitude'], sismo['longitude']], popup=f"Magnitud: {sismo['mag']}\nFecha: {sismo['time']}").add_to(mapa)
-    #folium_static(mapa)
+    # folium_static(mapa)
    
     # Establecer un índice personalizado para la tabla para resaltar el sismo más reciente
     df_combinado.index = range(1, len(df_combinado) + 1)
@@ -226,6 +226,5 @@ elif pagina_seleccionada == "Últimos sismos":
     ultimo_sismo()
 # Separadores
 st.markdown("---")
-
 
 
