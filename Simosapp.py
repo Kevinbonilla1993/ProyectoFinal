@@ -1,4 +1,3 @@
-from streamlit_folium import st_folium
 import streamlit as st
 import folium
 from datetime import datetime
@@ -7,6 +6,8 @@ import requests
 import json 
 import pytz
 import pandas as pd
+from streamlit_folium import st_folium
+
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
 
