@@ -1,3 +1,4 @@
+streamlit-folium
 streamlit
 gspread
 datetime
@@ -8,4 +9,4 @@ requests
 pytz
 matplotlib
 seaborn
-streamlit-folium
+
