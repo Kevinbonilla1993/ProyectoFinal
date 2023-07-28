@@ -27,7 +27,7 @@ def mostrar_inicio():
     folium.Marker(location=[latitude, longitude], popup=f"Sismo en {country}\nMagnitud: {mag}\nFecha: {fecha}").add_to(mapa)
     
     # Mostrar el mapa interactivo utilizando st.pydeck_chart
-    folium(mapa)
+    st.map(mapa)
 
     st.subheader("Detalles del sismo")
     
