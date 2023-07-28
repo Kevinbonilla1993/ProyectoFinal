@@ -30,7 +30,7 @@ def mostrar_inicio():
     # folium_static(mapa)
 
     # Mostrar el mapa interactivo
-    st_folium(mapa)
+    st.pydeck_chart(mapa)
     
     st.subheader("Detalles del sismo")
     
