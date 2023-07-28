@@ -26,8 +26,8 @@ def mostrar_inicio():
     # Agregar un marcador para mostrar la ubicación del sismo
     folium.Marker(location=[latitude, longitude], popup=f"Sismo en {country}\nMagnitud: {mag}\nFecha: {fecha}").add_to(mapa)
     
-    # Mostrar el mapa interactivo utilizando st.st_folium
-    st_map(mapa)
+    # Mostrar el mapa
+    folium.show(mapa)
 
     st.subheader("Detalles del sismo")
     
