@@ -1,5 +1,5 @@
 import streamlit as st
-import folium
+from folium import folium_static
 from datetime import datetime
 import time
 import requests
