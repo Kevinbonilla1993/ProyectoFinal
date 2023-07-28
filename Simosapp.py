@@ -1,4 +1,3 @@
-from streamlit_folium import st_folium, folium_static
 import streamlit as st
 import folium
 from datetime import datetime
@@ -7,10 +6,8 @@ import requests
 import json 
 import pytz
 import pandas as pd
-
 # Obtener parámetros de la URL
 result = st.experimental_get_query_params()
-
 country = result['val'][0]
 latitude = float(result['val'][1])
 longitude = float(result['val'][2])
@@ -18,7 +15,6 @@ depth = float(result['val'][3])
 mag = float(result['val'][4])
 sistype = result['val'][5]
 fecha = result['val'][6]
-
 # funciones
 def mostrar_inicio():
     # Crear el mapa
@@ -27,9 +23,9 @@ def mostrar_inicio():
     # Agregar un marcador para mostrar la ubicación del sismo
     folium.Marker(location=[latitude, longitude], popup=f"Sismo en {country}\nMagnitud: {mag}\nFecha: {fecha}").add_to(mapa)
     
-    # Mostrar el mapa
-    #st.folium_static(mapa)
-
+    # Mostrar el mapa interactivo
+    folium_static(mapa)
+    
     st.subheader("Detalles del sismo")
     
     # Función para mostrar detalles con un diseño más creativo
@@ -60,13 +56,10 @@ def mostrar_inicio():
         # Profundidad mínima y máxima en tus datos
         profundidad_minima = 0
         profundidad_maxima = 300
-
         # Calcular la profundidad relativa en el rango de 0 a 100
         profundidad_relativa = (depth - profundidad_minima) / (profundidad_maxima - profundidad_minima) * 100
-
         # Asegurarse de que la profundidad relativa esté dentro del rango de 0 a 100
         profundidad_relativa = max(0, min(100, profundidad_relativa))
-
         # Mostrar la barra de progreso con la profundidad relativa
         st.progress(int(profundidad_relativa))
         
@@ -80,7 +73,6 @@ def mostrar_inicio():
         
     with col2:
         show_details2()
-
     # Mostrar imágenes según el tipo de sismo
     if sistype == "leve":
         st.image("leve.jpeg", use_column_width=True)
@@ -95,7 +87,6 @@ def mostrar_inicio():
     
     if 'survey_responses' not in st.session_state:
         st.session_state.survey_responses = []
-
     # Agregar una encuesta rápida sobre seguridad
     st.subheader("Encuesta de Seguridad")
     question1 = st.radio("¿Tienes un plan de evacuación en caso de sismo?", ("Sí", "No"))
@@ -115,7 +106,6 @@ def mostrar_inicio():
     st.subheader("Respuestas de Encuesta Guardadas")
     for response in st.session_state.survey_responses:
         st.write(response)
-
 def ultimo_sismo():
     r = requests.get("https://www.jma.go.jp/bosai/quake/data/list.json")
     data = json.loads(r.text)
@@ -130,7 +120,6 @@ def ultimo_sismo():
             vars = vars.replace('-', ',')
             vars = vars.replace('/', '')
             vars = vars.split(',')
-
             if len(vars) >= 3:
                 lat = vars[0]
                 lon = vars[1]
@@ -143,7 +132,6 @@ def ultimo_sismo():
     Japon['depth'] = (Japon['depth'] / 1000)
     Japon['time'] = pd.to_datetime(Japon['time']).dt.strftime('%Y-%m-%d %H:%M:%S')
     Japon[['latitude', 'longitude', 'depth', 'mag']] = Japon[['latitude', 'longitude', 'depth', 'mag']].round(1)
-
     # Ultimo dato de estados unidos
     df = pd.read_csv('https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&orderby=time')
     df = df.dropna(subset=['place'])
@@ -159,7 +147,6 @@ def ultimo_sismo():
     #Redondear las columnas 
     eeuu[['latitude','longitude','depth','mag']]=eeuu[['latitude','longitude','depth','mag']].round(1)
     
-
     # Ultimo dato de mexico
     df = pd.read_csv('https://earthquake.usgs.gov/fdsnws/event/1/query?format=csv&orderby=time')
     # Eliminar filas con valores nulos en la columna 'place'
@@ -176,7 +163,6 @@ def ultimo_sismo():
     mexico['time'] = pd.to_datetime(mexico['time']).dt.strftime('%Y-%m-%d %H:%M:%S')
     #Redondear las columnas 
     mexico[['latitude','longitude','depth','mag']]=mexico[['latitude','longitude','depth','mag']].round(1)
-
     # Concatenar los tres conjuntos de datos
     df_combinado = pd.concat([Japon, eeuu, mexico], ignore_index=True)
     
@@ -185,7 +171,7 @@ def ultimo_sismo():
     mapa = folium.Map(location=[latitude, longitude], zoom_start=1)
     for idx, sismo in df_combinado.iterrows():
         folium.Marker(location=[sismo['latitude'], sismo['longitude']], popup=f"Magnitud: {sismo['mag']}\nFecha: {sismo['time']}").add_to(mapa)
-    #folium_static(mapa)
+    folium_static(mapa)
    
     # Establecer un índice personalizado para la tabla para resaltar el sismo más reciente
     df_combinado.index = range(1, len(df_combinado) + 1)
@@ -209,7 +195,6 @@ def ultimo_sismo():
     df_combinado['Latitud'] = df_combinado['Latitud'].astype(float)
     df_combinado['Longitud'] = df_combinado['Longitud'].astype(float)
     df_combinado['Profundidad'] = df_combinado['Profundidad'].astype(float)
-
     import matplotlib.pyplot as plt
     
     plt.figure(figsize=(9, 5))
@@ -219,38 +204,28 @@ def ultimo_sismo():
     plt.title('Magnitud de los últimos 15 sismos por país')
     plt.xticks(rotation=45)
     plt.tight_layout()
-
     # Mostrar el gráfico en Streamlit
     st.pyplot(plt)
-
 # Configuracion de la pagina
 st.set_page_config(page_title="QuakeAlert", page_icon="🌍", layout="wide")
-
 # Crear la disposición en 3 columnas
 col1, col2, col3 = st.columns([1, 1, 2])
-
 # Columna 1: Mostrar el GIF
 gif_path = "quake_alert..gif"
 col1.image(gif_path,use_column_width=True)
-
 # Columna 3: Mostrar el nombre de la página y opciones de sismos
 col3.title("QuakeAlert")
 col3.subheader("¡Recibe alertas de sismos en tiempo real!")
-
 # Opciones del menú desplegable
 paginas = ["Inicio", "Últimos sismos"]
 pagina_seleccionada = st.sidebar.radio("Selecciona una opción:", paginas)
-
 # Contenido de la página seleccionada
 if pagina_seleccionada == "Inicio":
     mostrar_inicio()
 elif pagina_seleccionada == "Últimos sismos":
     ultimo_sismo()
-
 # Separadores
 st.markdown("---")
-
-
 
 
 
