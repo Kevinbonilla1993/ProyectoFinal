@@ -8,4 +8,4 @@ requests
 pytz
 matplotlib
 seaborn
-folium_static
+streamlit_folium
