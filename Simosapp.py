@@ -1,4 +1,4 @@
-
+from streamlit_folium import st_folium, folium_static
 import streamlit as st
 import folium
 from datetime import datetime
@@ -28,7 +28,7 @@ def mostrar_inicio():
     folium.Marker(location=[latitude, longitude], popup=f"Sismo en {country}\nMagnitud: {mag}\nFecha: {fecha}").add_to(mapa)
     
     # Mostrar el mapa
-    st.folium_static(mapa)
+    #st.folium_static(mapa)
 
     st.subheader("Detalles del sismo")
     
